@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registartionorlogin.RegistrationLogin">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="414dp"
+        android:layout_height="184dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/reg_fresh_and_delicious"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateAcc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="81dp"
+        android:background="@drawable/btn_shape_round"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAcc" />
+
+    <TextView
+        android:id="@+id/tvGuest"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/as_guest"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GoogleRelativeLayout" />
+
+    <Button
+        android:id="@+id/btnCreateAcc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="81dp"
+        android:background="@drawable/btn_shape_round"
+        android:text="@string/create_account"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+    <RelativeLayout
+        android:id="@+id/GoogleRelativeLayout"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="67dp"
+        android:background="@drawable/btn_shape_round_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageButton
+            android:id="@+id/btn_google"
+            android:layout_width="24dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
+            android:background="@null"
+            android:contentDescription="@string/continue_with_google"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_google" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/btn_google"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="-174dp"
+            android:layout_marginBottom="75dp"
+            android:text="@string/continue_with_google"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

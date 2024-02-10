@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -58,4 +59,16 @@ dependencies {
 
     //lottie
     implementation 'com.airbnb.android:lottie:6.3.0'
+
+    //Splash Screen
+    implementation "androidx.core:core-splashscreen:1.1.0-alpha02"
+
+    //bottom nav bar
+    implementation 'com.google.android.material:material:1.11.0'
+
+    //play services
+    implementation'com.google.android.gms:play-services-auth:20.7.0'
+
+    //firebase auth
+    implementation'com.google.firebase:firebase-auth:22.3.1'
 }
