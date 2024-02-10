@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mealmate">MealMate</string>
+    <string name="smart_meals">Smart Meals Start Here</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="continue_with_google">Continue With Google</string>
+    <string name="as_guest">Continue as Guest?</string>
+    <string name="registration_meal">Registration Meal</string>
+    <string name="profile">Profile</string>
+</resources>
