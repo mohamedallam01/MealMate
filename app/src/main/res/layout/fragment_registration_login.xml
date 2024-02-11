@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GoogleRelativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/googleRelativeLayout" />
 
     <Button
         android:id="@+id/btnCreateAcc"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <RelativeLayout
-        android:id="@+id/GoogleRelativeLayout"
+        android:id="@+id/googleRelativeLayout"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="67dp"

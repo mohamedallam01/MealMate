@@ -20,7 +20,9 @@
             />
         <action
             android:id="@+id/action_splashScreen_to_new_user_graph5"
-            app:destination="@id/new_user_graph" />
+            app:destination="@id/new_user_graph"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true"/>
     </fragment>
     <include app:graph="@navigation/new_user_graph" />
     <include app:graph="@navigation/logged_in_graph" />

@@ -30,7 +30,6 @@ public class SplashScreen extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     @Override
@@ -42,31 +41,28 @@ public class SplashScreen extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-         navController = Navigation.findNavController(requireView());
+        navController = Navigation.findNavController(requireView());
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
 
-                if(isLogged){
+                if (isLogged) {
 
                     navController.navigate(R.id.action_splashScreen_to_logged_in_graph);
                     ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
 
-                }
-                else {
+                } else {
                     navController.navigate(R.id.action_splashScreen_to_new_user_graph5);
                 }
-
 
 
             }
 
 
         }, 2000);
-
 
 
     }

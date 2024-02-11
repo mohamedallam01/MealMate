@@ -18,5 +18,11 @@
         <action
             android:id="@+id/action_registration_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_registration_to_logged_in_graph"
+            app:destination="@id/logged_in_graph"
+            app:popUpTo="@id/registration"
+            app:popUpToInclusive="true"/>
     </fragment>
+    <include app:graph="@navigation/logged_in_graph" />
 </navigation>
