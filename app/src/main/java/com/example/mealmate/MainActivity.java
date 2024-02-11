@@ -21,6 +21,8 @@ import com.example.mealmate.home.Home;
 import com.example.mealmate.profile.Profile;
 import com.example.mealmate.search.Search;
 import com.example.mealmate.splashscreen.SplashScreen;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Random;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     NavController navController;
+
+    GoogleSignInClient googleSignInClient;
+    GoogleSignInOptions googleSignInOptions;
 
 
     @Override
@@ -67,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
                                 .setLaunchSingleTop(true)
                                 .setRestoreState(true)
                                 .setPopUpTo(R.id.home,
-                                        false, // inclusive
-                                        true) // saveState)
+                                        false,
+                                        true)
                                 .build();
                         navController.navigate(item.getItemId(), null, navOptions);
 
