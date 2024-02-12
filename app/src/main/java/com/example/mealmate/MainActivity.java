@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     NavController navController;
 
-    GoogleSignInClient googleSignInClient;
-    GoogleSignInOptions googleSignInOptions;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
