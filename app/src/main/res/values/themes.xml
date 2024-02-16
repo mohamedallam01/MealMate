@@ -1,12 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MealMate" parent="Theme.AppCompat.Light">
-         Customize your light theme here.
-         <item name="colorPrimary">@color/medium_electric_blue</item>
-         <item name="android:colorBackground">@color/white</item>
-         <item name="colorPrimaryContainer">@color/maastricht_blue</item>
+    <style name="Base.Theme.MealMate" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.MealMate" parent="Base.Theme.MealMate" />
-
 </resources>
