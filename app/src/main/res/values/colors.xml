@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#014E84</color>
-    <color name="grey">#EEEEEE</color>
+    <color name="medium_electric_blue">#01538B</color>
+    <color name="maastricht_blue">#001D36</color>
 </resources>
+

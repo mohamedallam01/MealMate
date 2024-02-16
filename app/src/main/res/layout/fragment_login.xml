@@ -4,17 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".login.Login">
+    tools:context=".login.Login"
+    >
+
+
+    <ImageView
+        android:id="@+id/ivLogin"
+        android:layout_width="414dp"
+        android:layout_height="184dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/are_you_looking_for_quick_and_easy_appetizer_recipes_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/login_image" />
 
     <TextView
         android:id="@+id/tvEmailLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/e_mail"
+        app:layout_constraintTop_toBottomOf="@id/ivLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/etEmailLog"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_regular"
+
+        android:textColor="@color/medium_electric_blue"
+        />
 
     <EditText
         android:id="@+id/etEmailLog"
@@ -27,6 +45,8 @@
         android:inputType="textEmailAddress"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:background="@drawable/et_shape"
+        android:layout_marginTop="8dp"
         android:hint="@string/hint_e_mail"/>
 
     <TextView
@@ -37,7 +57,10 @@
         app:layout_constraintTop_toBottomOf="@id/etEmailLog"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_regular"
+
+        android:textColor="@color/medium_electric_blue"/>
 
     <EditText
         android:id="@+id/etPassLog"
@@ -51,6 +74,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:hint="@string/hint_password"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/et_shape"
         />
 
     <Button

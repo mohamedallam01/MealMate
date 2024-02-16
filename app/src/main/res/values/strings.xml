@@ -31,4 +31,12 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign UP</string>
     <string name="login">Login</string>
+    <string name="registration_login_image">Registration Login Image</string>
+    <string name="login_image">Login Image</string>
+    <string name="checked">checked</string>
+    <string name="not_checked">not checked</string>
+    <string name="daily_inspiration_image">Daily Inspiration Image</string>
+    <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="country">Country</string>
+    <string name="area_image">Area Image</string>
 </resources>

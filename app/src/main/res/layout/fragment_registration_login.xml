@@ -15,12 +15,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCreateAccReg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/registration_login_image" />
 
     <Button
         android:id="@+id/btnSignIn"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="81dp"
@@ -40,9 +41,10 @@
         android:focusable="true"
         android:text="@string/as_guest"
         android:textAlignment="center"
-        android:textColor="@color/blue"
+        android:textColor="@color/medium_electric_blue"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,23 +53,22 @@
     <Button
         android:id="@+id/btnCreateAccReg"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="81dp"
-        android:background="@drawable/btn_shape_round"
         android:text="@string/create_account"
         android:textColor="@color/white"
         android:textSize="20sp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:background="@drawable/btn_shape_round"/>
 
     <RelativeLayout
         android:id="@+id/googleRelativeLayout"
         android:layout_width="250dp"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_marginTop="67dp"
         android:background="@drawable/btn_shape_round_white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,24 +81,27 @@
         <ImageButton
             android:id="@+id/btn_google"
             android:layout_width="24dp"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
             android:background="@null"
             android:contentDescription="@string/continue_with_google"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_google" />
 
         <TextView
+            android:id="@+id/tvContinueGoogle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/btn_google"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="-174dp"
-            android:layout_marginBottom="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@id/btn_google"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/continue_with_google"
             android:textColor="@color/black"
             android:textSize="16sp"

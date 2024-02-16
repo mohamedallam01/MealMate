@@ -7,6 +7,6 @@
     <fragment
         android:id="@+id/profile"
         android:name="com.example.mealmate.profile.Profile"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
