@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mealmate.R;
@@ -61,6 +62,8 @@ public class RegistrationLogin extends Fragment {
 
     DatabaseReference usersRef;
 
+    TextView tvGuest;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,7 @@ public class RegistrationLogin extends Fragment {
         relativeLayout = view.findViewById(R.id.googleRelativeLayout);
         btnCreateAccReg = view.findViewById(R.id.btnCreateAccReg);
         btnSignin = view.findViewById(R.id.btnSignIn);
+        tvGuest = view.findViewById(R.id.tvGuest);
 
 
 
@@ -145,6 +149,13 @@ public class RegistrationLogin extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_registration_login_to_login);
+            }
+        });
+
+        tvGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_registration_login_to_logged_in_graph);
             }
         });
 

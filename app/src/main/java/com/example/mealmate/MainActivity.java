@@ -1,31 +1,20 @@
 package com.example.mealmate;
 
-import static androidx.navigation.fragment.FragmentKt.findNavController;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavGraph;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.mealmate.favorite.Favorite;
-import com.example.mealmate.home.Home;
-import com.example.mealmate.profile.Profile;
-import com.example.mealmate.search.Search;
-import com.example.mealmate.splashscreen.SplashScreen;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.appcheck.interop.BuildConfig;
 
-import java.util.Random;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
 
 
 

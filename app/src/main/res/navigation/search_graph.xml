@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/search"
         android:name="com.example.mealmate.search.Search"
-        android:label="fragment_search"
+        android:label="Search"
         tools:layout="@layout/fragment_search" />
 </navigation>

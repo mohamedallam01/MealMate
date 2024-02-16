@@ -32,7 +32,7 @@ android {
 dependencies {
 
     def room_version = "2.6.1"
-    def nav_version = "2.7.6"
+    def nav_version = "2.7.7"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
@@ -75,4 +75,13 @@ dependencies {
 
     //firebase database
     implementation'com.google.firebase:firebase-database:20.3.0'
+
+    //RxJava Retrofit and room
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation 'com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0'
+    implementation 'androidx.room:room-rxjava3:2.6.1'
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

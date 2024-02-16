@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/splashScreen"
         android:name="com.example.mealmate.splashscreen.SplashScreen"
-        android:label="fragment_splash_screen"
+        android:label="Splash Screen"
         app:popUpToInclusive="true"
         tools:layout="@layout/fragment_splash_screen">
         <action
