@@ -1,0 +1,9 @@
+<!-- res/color/bottom_nav_icon_colors.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color when item is selected -->
+    <item android:color="@color/white" android:state_checked="true"
+        android:title="@string/checked" />
+    <!-- Default color -->
+    <item android:color="@color/black"
+        android:title="@string/not_checked" />
+</selector>
