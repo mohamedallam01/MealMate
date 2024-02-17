@@ -16,8 +16,15 @@ import com.example.mealmate.network.MealsRemoteDataSource;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealsRepositoryImpl implements MealsRepository {
@@ -52,22 +59,25 @@ public class MealsRepositoryImpl implements MealsRepository {
     public Flowable<List<DailyMeal>> getDailyMeal() {
         Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
 
-        return remoteDataSource.getDailyMeal().flatMapIterable(DailyMealResponse::getDailyMeals)
-                .doOnNext( dailyMeal ->{
+        remoteDataSource.getDailyMeal()
+                .doOnNext(dailyMeal -> {
                             Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
-                            insertMeal(dailyMeal);
-                            Log.i(TAG, "getDailyMeal: meal inserted to database" + remoteDataSource.getDailyMeal().toString());
 
+                    insertMeals(dailyMeal.getDailyMeals());
 
 
                         }
+                ).map(
+                        DailyMealResponse::getDailyMeals
 
-
-                        )
-                .toList()
-                .toFlowable()
+                )
+                .toFlowable(BackpressureStrategy.LATEST)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+
+        Log.d(TAG, "meal returned from database" + localDataSource.getDailyMeal());
+
+        return localDataSource.getDailyMeal();
     }
 
     @Override
@@ -79,6 +89,34 @@ public class MealsRepositoryImpl implements MealsRepository {
     public void insertMeal(DailyMeal dailyMeal) {
         Log.i(TAG, "Inserting meal: " + dailyMeal.getIdMeal());
         localDataSource.insertMeal(dailyMeal);
+
+    }
+
+    @Override
+    public void insertMeals(List<DailyMeal> dailyMeals) {
+
+        localDataSource.insertMeals(dailyMeals);
+//        Log.d(TAG, "insertMeals: Daily meals size: " + dailyMeals.size());
+//        Completable.fromRunnable(() -> localDataSource.insertMeals(dailyMeals))
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new CompletableObserver() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        Log.d(TAG, "onSubscribe: Called");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "onComplete: Called");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "onError: " + e.getMessage());
+//                    }
+//                });
+
 
     }
 

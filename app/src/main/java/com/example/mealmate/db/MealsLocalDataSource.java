@@ -10,5 +10,6 @@ public interface MealsLocalDataSource {
 
     public Flowable<List<DailyMeal>> getDailyMeal();
     public void insertMeal(DailyMeal dailyMeal);
+    public void insertMeals(List<DailyMeal> dailyMeal);
     public void deleteMeal(DailyMeal dailyMeal);
 }

@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,6 +57,8 @@ public class Home extends Fragment implements HomeView {
 
     AreaAdapter areaAdapter;
 
+    CardView cvDailyMeal;
+
 
 
 
@@ -78,6 +83,7 @@ public class Home extends Fragment implements HomeView {
 
         ivDailyMeal = view.findViewById(R.id.ivDaily);
         tvDailyName = view.findViewById(R.id.tvDailyName);
+        cvDailyMeal = view.findViewById(R.id.cvDaily);
 
         rvCountry = view.findViewById(R.id.rvCountry);
         rvCountry.setHasFixedSize(true);
@@ -98,15 +104,16 @@ public class Home extends Fragment implements HomeView {
 
 
 
+
+
     }
 
 
     @Override
     public void showData(List<DailyMeal> dailyMealList) {
 
-
+        DailyMeal dailyMeal = dailyMealList.get(0);
         if (!dailyMealList.isEmpty()) {
-            DailyMeal dailyMeal = dailyMealList.get(0);
             tvDailyName.setText(dailyMeal.getStrMeal());
             Glide.with(requireContext())
                     .load(dailyMeal.getStrMealThumb())
@@ -122,6 +129,15 @@ public class Home extends Fragment implements HomeView {
             Log.i(TAG, "showData: get in show data failed ");
 
         }
+
+
+        cvDailyMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HomeDirections.ActionHomeToDetails action = HomeDirections.actionHomeToDetails(dailyMeal.getIdMeal());
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
     }
 
