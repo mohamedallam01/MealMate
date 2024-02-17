@@ -1,19 +1,18 @@
-package com.example.mealmate.search;
+package com.example.mealmate.search.view;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mealmate.MainActivity;
 import com.example.mealmate.R;
 
-public class Search extends Fragment {
+
+public class ByIngredients extends Fragment {
+
 
 
     @Override
@@ -26,13 +25,6 @@ public class Search extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ((MainActivity) requireActivity()).setBottomNavigationVisibility(true);
-
+        return inflater.inflate(R.layout.fragment_by_ingredients, container, false);
     }
 }

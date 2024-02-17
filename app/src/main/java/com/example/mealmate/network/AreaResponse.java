@@ -1,7 +1,6 @@
 package com.example.mealmate.network;
 
-import com.example.mealmate.home.model.Area;
-import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.search.country.model.Area;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

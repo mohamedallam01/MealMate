@@ -1,4 +1,4 @@
-package com.example.mealmate.home.model;
+package com.example.mealmate.search.country.model;
 
 
 import androidx.room.Entity;
