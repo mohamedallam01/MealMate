@@ -1,16 +1,12 @@
 package com.example.mealmate.home.view;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,21 +19,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.MainActivity;
 import com.example.mealmate.R;
-import com.example.mealmate.db.MealsLocalDataSource;
 import com.example.mealmate.db.MealsLocalDataSourceImpl;
-import com.example.mealmate.home.model.Area;
 import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.home.presenter.HomePresenterImpl;
-import com.example.mealmate.model.MealsRepository;
 import com.example.mealmate.model.MealsRepositoryImpl;
-import com.example.mealmate.network.MealsRemoteDataSource;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class Home extends Fragment implements HomeView {
@@ -50,12 +38,6 @@ public class Home extends Fragment implements HomeView {
     ImageView ivDailyMeal;
 
     TextView tvDailyName;
-
-    RecyclerView rvCountry;
-
-    private List<Area> areaList;
-
-    AreaAdapter areaAdapter;
 
     CardView cvDailyMeal;
 
@@ -85,21 +67,12 @@ public class Home extends Fragment implements HomeView {
         tvDailyName = view.findViewById(R.id.tvDailyName);
         cvDailyMeal = view.findViewById(R.id.cvDaily);
 
-        rvCountry = view.findViewById(R.id.rvCountry);
-        rvCountry.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
-        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
-        areaList = new ArrayList<>();
-        areaAdapter = new AreaAdapter(requireContext(), areaList);
 
         homePresenter = new HomePresenterImpl(this, MealsRepositoryImpl.getInstance(
                 MealsLocalDataSourceImpl.getInstance(requireContext()), MealsRemoteDataSourceImpl.getInstance(requireContext())
         ));
 
-        rvCountry.setLayoutManager(linearLayoutManager);
-        rvCountry.setAdapter(areaAdapter);
-        homePresenter.getAllCountries();
         homePresenter.getMeal();
 
 
@@ -141,11 +114,7 @@ public class Home extends Fragment implements HomeView {
 
     }
 
-    @Override
-    public void showAreaData(List<Area> areaList) {
-        areaAdapter.setList(areaList);
-        areaAdapter.notifyDataSetChanged();
-    }
+
 
     @Override
     public void showErrorMsg(String error) {

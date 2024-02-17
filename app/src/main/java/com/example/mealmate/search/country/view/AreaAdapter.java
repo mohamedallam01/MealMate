@@ -1,4 +1,4 @@
-package com.example.mealmate.home.view;
+package com.example.mealmate.search.country.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,20 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealDao;
-import com.example.mealmate.home.model.Area;
+import com.example.mealmate.search.country.model.Area;
 
 import java.util.List;
 

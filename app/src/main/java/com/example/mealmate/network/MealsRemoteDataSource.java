@@ -10,4 +10,5 @@ public interface MealsRemoteDataSource {
 
  Observable<DailyMealResponse> getDailyMeal();
  Observable<AreaResponse> getAreas();
+ Observable<CategoryResponse> getCategories();
 }

@@ -44,22 +44,7 @@ public class HomePresenterImpl implements HomePresenter {
                 );
     }
 
-    @Override
-    public void getAllCountries() {
-        Log.i(TAG, "getAllCountries: ");
-        mealsRepository.getArea()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(areaResponse -> {
-                            homeView.showAreaData(areaResponse.getAreas());
-                            Log.i(TAG, "getAllCountries: " + areaResponse.areas.toString());
-                        },
-                        error -> {
-                            homeView.showErrorMsg("Failed to fetch Areas");
-                            Log.i(TAG, "Error fetching Areas: " + error);
-                        }
-                );
-    }
+
 
 
     @Override

@@ -42,4 +42,9 @@
     <string name="more_details">More Details</string>
     <string name="detail_meal_image">Detail Meal Image</string>
     <string name="by_country">By Country</string>
+    <string name="by_ingredients">By Ingredients</string>
+    <string name="country_image">Country Image</string>
+    <string name="ingredients_image">Ingredients Image</string>
+    <string name="category_image">Category Image</string>
+    <string name="by_category">By Category</string>
 </resources>

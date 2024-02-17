@@ -87,6 +87,21 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 });
     }
 
+    @Override
+    public Observable<CategoryResponse> getCategories() {
+        return mealService.getCategory()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(categoryResponse -> {
+                    categoryResponse.getCategories();
+                    Log.i(TAG, "getCategories: The Category Is Here");
+                })
+                .onErrorResumeNext(error -> {
+                    Log.e(TAG, "getCategories: Error fetching Categories", error);
+                    return Observable.error(error);
+                });
+    }
+
 
 }
 

@@ -11,4 +11,7 @@ public interface MealService {
     @GET("list.php?a=list")
     Observable<AreaResponse> getArea();
 
+    @GET("categories.php")
+    Observable<CategoryResponse> getCategory();
+
 }

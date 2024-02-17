@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".search.Search">
+    tools:context=".search.view.Search">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCountry"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
             android:id="@+id/ivCountry"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:background="@drawable/are_you_looking_for_quick_and_easy_appetizer_recipes_"
-            android:contentDescription="@string/daily_inspiration_image"
+            android:background="@drawable/country"
+            android:contentDescription="@string/country_image"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -36,6 +36,74 @@
             android:text="@string/by_country"
             android:textColor="@color/white"
              />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvCountry">
+
+        <ImageView
+            android:id="@+id/ivIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ingredient"
+            android:contentDescription="@string/ingredients_image"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tvIngredientName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/maastricht_blue"
+            android:gravity="center"
+            android:text="@string/by_ingredients"
+            android:textColor="@color/white"
+            />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCategory"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvIngredients">
+
+        <ImageView
+            android:id="@+id/ivCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/category"
+            android:contentDescription="@string/category_image"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@color/maastricht_blue"
+            android:gravity="center"
+            android:text="@string/by_category"
+            android:textColor="@color/white"
+            />
 
 
     </androidx.cardview.widget.CardView>

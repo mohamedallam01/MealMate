@@ -2,13 +2,10 @@ package com.example.mealmate.model;
 
 import android.util.Log;
 
-import androidx.room.RoomDatabase;
-
-import com.example.mealmate.db.AppDataBase;
 import com.example.mealmate.db.MealsLocalDataSource;
-import com.example.mealmate.home.model.Area;
 import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.network.AreaResponse;
+import com.example.mealmate.network.CategoryResponse;
 import com.example.mealmate.network.DailyMealResponse;
 import com.example.mealmate.network.MealService;
 import com.example.mealmate.network.MealsRemoteDataSource;
@@ -16,15 +13,9 @@ import com.example.mealmate.network.MealsRemoteDataSource;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealsRepositoryImpl implements MealsRepository {
@@ -123,6 +114,12 @@ public class MealsRepositoryImpl implements MealsRepository {
     @Override
     public Observable<AreaResponse> getArea() {
         return remoteDataSource.getAreas()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<CategoryResponse> getCategory() {
+        return remoteDataSource.getCategories()
                 .subscribeOn(Schedulers.io());
     }
 }
