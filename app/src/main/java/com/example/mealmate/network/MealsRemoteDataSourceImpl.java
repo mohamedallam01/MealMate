@@ -40,7 +40,6 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
 
         mealService = retrofit.create(MealService.class);
 
-        mealDao = db.getMealDao();
 
 
 
@@ -65,7 +64,6 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(dailyMealResponse -> {
-                    dailyMealResponse.getDailyMeals();
                     Log.i(TAG, "getDailyMeal: The Meal Is Here");
                 })
                 .onErrorResumeNext(error -> {

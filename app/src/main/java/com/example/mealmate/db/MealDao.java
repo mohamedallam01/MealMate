@@ -17,10 +17,12 @@ import io.reactivex.rxjava3.core.Flowable;
 @Dao
 public interface MealDao {
 
-    @Query("SELECT * FROM daily_meal_table")
+    @Query("SELECT * FROM meals")
     Flowable<List<DailyMeal>> getDailyMeal();
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    Completable insertMeal (DailyMeal dailyMeal);
+    void insertMeal (DailyMeal dailyMeal);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertMeals (List<DailyMeal> dailyMeals);
     @Delete
     Completable deleteMeal (DailyMeal dailyMeal);
 }

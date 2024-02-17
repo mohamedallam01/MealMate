@@ -39,4 +39,7 @@
     <string name="daily_inspiration">Daily Inspiration</string>
     <string name="country">Country</string>
     <string name="area_image">Area Image</string>
+    <string name="more_details">More Details</string>
+    <string name="detail_meal_image">Detail Meal Image</string>
+    <string name="by_country">By Country</string>
 </resources>

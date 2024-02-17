@@ -8,11 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@Entity(tableName = "daily_meal_table")
+@Entity(tableName = "meals")
 public class DailyMeal {
 
     @NonNull
-    @PrimaryKey
+    @PrimaryKey()
     private String idMeal;
     private String strMeal;
     private String strDrinkAlternate;
@@ -26,7 +26,17 @@ public class DailyMeal {
     private List<String> strMeasures;
 
 
-    public DailyMeal() {
+    public DailyMeal(@NonNull String idMeal, String strMeal, String strDrinkAlternate, String strCategory, String strArea, String strInstructions, String strMealThumb, Object strTags, String strYoutube) {
+        this.idMeal = idMeal;
+        this.strMeal = strMeal;
+        this.strDrinkAlternate = strDrinkAlternate;
+        this.strCategory = strCategory;
+        this.strArea = strArea;
+        this.strInstructions = strInstructions;
+        this.strMealThumb = strMealThumb;
+        this.strTags = strTags;
+        this.strYoutube = strYoutube;
+
     }
 
     @NonNull

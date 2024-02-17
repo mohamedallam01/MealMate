@@ -16,6 +16,8 @@ public interface MealsRepository {
     void deleteMeal(DailyMeal dailyMeal);
     void insertMeal(DailyMeal dailyMeal);
 
+    void insertMeals(List<DailyMeal> dailyMeal);
+
     Observable<AreaResponse> getArea();
 
 }
