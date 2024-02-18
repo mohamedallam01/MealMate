@@ -28,7 +28,7 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
 
     private static MealsRemoteDataSourceImpl mealsRemoteDataSource = null;
 
-    private MealsRemoteDataSourceImpl(Context context){
+    private MealsRemoteDataSourceImpl(Context context) {
 
         db = AppDataBase.getInstance(context);
 
@@ -41,13 +41,11 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
         mealService = retrofit.create(MealService.class);
 
 
-
-
     }
 
-    public static MealsRemoteDataSourceImpl getInstance(Context context){
+    public static MealsRemoteDataSourceImpl getInstance(Context context) {
 
-        if(mealsRemoteDataSource == null){
+        if (mealsRemoteDataSource == null) {
             mealsRemoteDataSource = new MealsRemoteDataSourceImpl(context.getApplicationContext());
         }
 
@@ -98,6 +96,34 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 })
                 .onErrorResumeNext(error -> {
                     Log.e(TAG, "getCategories: Error fetching Categories", error);
+                    return Observable.error(error);
+                });
+    }
+
+    @Override
+    public Observable<NationalResponse> getNationalMeals() {
+        return mealService.getNationalMeals()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(nationalResponse -> {
+                    nationalResponse.getNationalMeals();
+                    Log.i(TAG, "getNationalMeals: The National Meals Is Here");
+                })
+                .onErrorResumeNext(error -> {
+                    Log.e(TAG, "getNationalMeals: Error fetching National Meals", error);
+                    return Observable.error(error);
+                });
+    }
+
+    @Override
+    public Observable<DailyMealResponse> getMealDetails(String id) {
+        return mealService.getMealDetails(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(dailyMealResponse -> {
+                    dailyMealResponse.getDailyMeals();
+                }).onErrorResumeNext(error -> {
+                    Log.e(TAG, "getNationalMeals: Error fetching National Meals", error);
                     return Observable.error(error);
                 });
     }

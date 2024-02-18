@@ -22,12 +22,12 @@
     </fragment>
     <fragment
         android:id="@+id/byCategory"
-        android:name="com.example.mealmate.search.view.ByCategory"
+        android:name="com.example.mealmate.search.category.view.ByCategory"
         android:label="fragment_by_category"
         tools:layout="@layout/fragment_by_category" />
     <fragment
         android:id="@+id/byIngredients"
-        android:name="com.example.mealmate.search.view.ByIngredients"
+        android:name="com.example.mealmate.search.ingredient.view.ByIngredients"
         android:label="fragment_by_ingredients"
         tools:layout="@layout/fragment_by_ingredients" />
     <fragment

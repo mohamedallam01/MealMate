@@ -1,4 +1,4 @@
-package com.example.mealmate.search.view;
+package com.example.mealmate.search.category.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,8 +17,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealDao;
 import com.example.mealmate.search.category.model.Category;
-import com.example.mealmate.search.country.model.Area;
-import com.example.mealmate.search.country.view.AreaAdapter;
 
 import java.util.List;
 

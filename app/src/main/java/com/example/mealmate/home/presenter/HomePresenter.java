@@ -10,6 +10,7 @@ public interface HomePresenter {
 
     void getMeal();
 
+    void getAllNationalMeals();
 
     void addToFav(DailyMeal dailyMeal);
 }
