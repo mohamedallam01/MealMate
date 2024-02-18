@@ -1,4 +1,4 @@
-package com.example.mealmate.search.view;
+package com.example.mealmate.search.category.view;
 
 import android.os.Bundle;
 
@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -19,9 +18,6 @@ import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
 import com.example.mealmate.search.category.model.Category;
 import com.example.mealmate.search.category.presenter.CategoryPresenterImpl;
-import com.example.mealmate.search.country.model.Area;
-import com.example.mealmate.search.country.presenter.CountryPresenterImpl;
-import com.example.mealmate.search.country.view.AreaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

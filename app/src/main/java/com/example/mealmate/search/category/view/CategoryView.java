@@ -1,4 +1,4 @@
-package com.example.mealmate.search.view;
+package com.example.mealmate.search.category.view;
 
 import com.example.mealmate.search.category.model.Category;
 

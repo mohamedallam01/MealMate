@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +23,15 @@ import com.example.mealmate.MainActivity;
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealsLocalDataSourceImpl;
 import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.home.model.NationalMeal;
 import com.example.mealmate.home.presenter.HomePresenterImpl;
 import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
+import com.example.mealmate.search.country.model.Area;
+import com.example.mealmate.search.country.presenter.CountryPresenterImpl;
+import com.example.mealmate.search.country.view.AreaAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +49,11 @@ public class Home extends Fragment implements HomeView {
     CardView cvDailyMeal;
 
 
+    RecyclerView rvNational;
+
+    private List<NationalMeal> nationalMeals;
+
+    NationalMealsAdapter nationalMealsAdapter;
 
 
     @Override
@@ -67,16 +79,24 @@ public class Home extends Fragment implements HomeView {
         tvDailyName = view.findViewById(R.id.tvDailyName);
         cvDailyMeal = view.findViewById(R.id.cvDaily);
 
+        rvNational = view.findViewById(R.id.rvNationalMeal);
+        rvNational.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        nationalMeals = new ArrayList<>();
+        nationalMealsAdapter = new NationalMealsAdapter(requireContext(), nationalMeals);
 
 
         homePresenter = new HomePresenterImpl(this, MealsRepositoryImpl.getInstance(
                 MealsLocalDataSourceImpl.getInstance(requireContext()), MealsRemoteDataSourceImpl.getInstance(requireContext())
         ));
 
+        rvNational.setLayoutManager(linearLayoutManager);
+        rvNational.setAdapter(nationalMealsAdapter);
+        homePresenter.getAllNationalMeals();
+
         homePresenter.getMeal();
-
-
-
 
 
     }
@@ -97,8 +117,8 @@ public class Home extends Fragment implements HomeView {
             Log.i(TAG, "showData: get in show data successful ");
 
         } else {
-                tvDailyName.setText("No data available");
-                ivDailyMeal.setImageResource(R.drawable.are_you_looking_for_quick_and_easy_appetizer_recipes_);
+            tvDailyName.setText("No data available");
+            ivDailyMeal.setImageResource(R.drawable.are_you_looking_for_quick_and_easy_appetizer_recipes_);
             Log.i(TAG, "showData: get in show data failed ");
 
         }
@@ -114,6 +134,11 @@ public class Home extends Fragment implements HomeView {
 
     }
 
+    @Override
+    public void showNationalData(List<NationalMeal> nationalMealList) {
+        nationalMealsAdapter.setList(nationalMealList);
+        nationalMealsAdapter.notifyDataSetChanged();
+    }
 
 
     @Override

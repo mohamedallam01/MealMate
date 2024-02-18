@@ -47,4 +47,14 @@
     <string name="ingredients_image">Ingredients Image</string>
     <string name="category_image">Category Image</string>
     <string name="by_category">By Category</string>
+    <string name="choose_a_day_to_add_the_meal">Choose a Day to add the Meal:</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">TuesDay</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="add_to_calender">Add to Calender</string>
+    <string name="national_meals">National Meals</string>
 </resources>

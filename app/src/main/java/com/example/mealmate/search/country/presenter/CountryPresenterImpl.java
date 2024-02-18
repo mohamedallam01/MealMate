@@ -3,7 +3,7 @@ package com.example.mealmate.search.country.presenter;
 import android.util.Log;
 
 import com.example.mealmate.model.MealsRepository;
-import com.example.mealmate.search.view.CategoryView;
+import com.example.mealmate.search.category.view.CategoryView;
 import com.example.mealmate.search.country.view.CountryView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

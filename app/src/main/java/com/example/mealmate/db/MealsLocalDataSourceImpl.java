@@ -51,6 +51,7 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 mealDao.insertMeal(dailyMeal);
             }
         }).start();
@@ -59,12 +60,12 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
 
     @Override
     public void insertMeals(List<DailyMeal> dailyMeals) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mealDao.insertMeals(dailyMeals);
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                mealDao.insertMeals(dailyMeals);
+//            }
+//        }).start();
 
 //        if (dailyMeals != null) {
 //            Log.d(TAG, "insertMeals: " + dailyMeals.size());

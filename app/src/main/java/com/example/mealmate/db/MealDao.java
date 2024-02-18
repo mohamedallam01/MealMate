@@ -20,7 +20,7 @@ public interface MealDao {
     @Query("SELECT * FROM meals")
     Flowable<List<DailyMeal>> getDailyMeal();
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertMeal (DailyMeal dailyMeal);
+    Completable insertMeal (DailyMeal dailyMeal);
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMeals (List<DailyMeal> dailyMeals);
     @Delete

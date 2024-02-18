@@ -44,7 +44,21 @@ public class HomePresenterImpl implements HomePresenter {
                 );
     }
 
-
+    @Override
+    public void getAllNationalMeals() {
+        mealsRepository.getNational()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(nationalResponse -> {
+                            homeView.showNationalData(nationalResponse.getNationalMeals());
+                            Log.i(TAG, "getAllNationalMeals: " + nationalResponse.nationalMeals.toString());
+                        },
+                        error -> {
+                            homeView.showErrorMsg("Failed to fetch National Meals");
+                            Log.i(TAG, "Error fetchingNational Meals: " + error);
+                        }
+                );
+    }
 
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.mealmate.search.view;
+package com.example.mealmate.search.ingredient.view;
 
 import android.os.Bundle;
 

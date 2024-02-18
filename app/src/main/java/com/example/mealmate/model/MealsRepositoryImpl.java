@@ -9,6 +9,7 @@ import com.example.mealmate.network.CategoryResponse;
 import com.example.mealmate.network.DailyMealResponse;
 import com.example.mealmate.network.MealService;
 import com.example.mealmate.network.MealsRemoteDataSource;
+import com.example.mealmate.network.NationalResponse;
 
 import java.util.List;
 
@@ -49,12 +50,12 @@ public class MealsRepositoryImpl implements MealsRepository {
     @Override
     public Flowable<List<DailyMeal>> getDailyMeal() {
         Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
-
-        remoteDataSource.getDailyMeal()
+        Log.d(TAG, "meal returned from database" + localDataSource.getDailyMeal());
+        return remoteDataSource.getDailyMeal()
                 .doOnNext(dailyMeal -> {
                             Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
 
-                    insertMeals(dailyMeal.getDailyMeals());
+                            insertMeals(dailyMeal.getDailyMeals());
 
 
                         }
@@ -66,9 +67,7 @@ public class MealsRepositoryImpl implements MealsRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        Log.d(TAG, "meal returned from database" + localDataSource.getDailyMeal());
 
-        return localDataSource.getDailyMeal();
     }
 
     @Override
@@ -79,7 +78,8 @@ public class MealsRepositoryImpl implements MealsRepository {
     @Override
     public void insertMeal(DailyMeal dailyMeal) {
         Log.i(TAG, "Inserting meal: " + dailyMeal.getIdMeal());
-        localDataSource.insertMeal(dailyMeal);
+        localDataSource.insertMeal(new DailyMeal(
+                "", "", "", "", "", "", "", "", ""));
 
     }
 
@@ -121,5 +121,23 @@ public class MealsRepositoryImpl implements MealsRepository {
     public Observable<CategoryResponse> getCategory() {
         return remoteDataSource.getCategories()
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<NationalResponse> getNational() {
+        return remoteDataSource.getNationalMeals()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Flowable<List<DailyMeal>> getMealDetails(String id) {
+        return remoteDataSource.getMealDetails(id)
+               .map(
+                        DailyMealResponse::getDailyMeals
+
+                )
+                .toFlowable(BackpressureStrategy.LATEST)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
