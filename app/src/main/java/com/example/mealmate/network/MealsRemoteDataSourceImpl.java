@@ -5,8 +5,9 @@ import android.util.Log;
 
 import com.example.mealmate.db.AppDataBase;
 import com.example.mealmate.db.MealDao;
-import com.example.mealmate.db.MealsLocalDataSource;
-import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.details.model.DetailedMeal;
+
+import java.util.List;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -116,17 +117,28 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
     }
 
     @Override
-    public Observable<DailyMealResponse> getMealDetails(String id) {
+    public Observable<DetailedMealResponse> getMealDetails(String id) {
         return mealService.getMealDetails(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(dailyMealResponse -> {
-                    dailyMealResponse.getDailyMeals();
-                }).onErrorResumeNext(error -> {
-                    Log.e(TAG, "getNationalMeals: Error fetching National Meals", error);
+                .flatMap(detailedMealResponse -> {
+                    if (detailedMealResponse == null) {
+                        return Observable.empty();
+                    } else {
+                        return Observable.just(detailedMealResponse);
+                    }
+                })
+                .doOnNext(detailedMealResponse -> {
+                    List<DetailedMeal> detailedMeals = detailedMealResponse.getDetailedMeals();
+                    Log.d(TAG, "getDetailedMeals:Success fetching Detailed Meals: " + detailedMeals.size());
+                })
+                .onErrorResumeNext(error -> {
+                    Log.d(TAG, "getDetiledMeals: Error fetching Detailed Meals", error);
                     return Observable.error(error);
                 });
     }
+
+
 
 
 }

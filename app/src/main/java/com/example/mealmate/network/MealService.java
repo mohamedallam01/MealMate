@@ -18,7 +18,7 @@ public interface MealService {
     @GET("filter.php?a=Egyptian")
     Observable<NationalResponse> getNationalMeals();
 
-    @GET("lookup.php")
-    Observable<DailyMealResponse> getMealDetails(@Query("i") String mealId);
+    @GET("lookup.php?i=")
+    Observable<DetailedMealResponse> getMealDetails(@Query("i") String mealId);
 
 }
