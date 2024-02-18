@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -34,6 +36,8 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
     // private OnProductClickListener onProductClickListener;
 
     MealDao mealDao;
+
+
 
 
     public NationalMealsAdapter(Context context, List<NationalMeal> nationalMealList) {
@@ -73,6 +77,14 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
 
         Log.i(TAG, "onBindViewHolder: ");
 
+        holder.ivNationalThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HomeDirections.ActionHomeToDetails action = HomeDirections.actionHomeToDetails(nationalMeal.getMealId());
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
     }
 
     @Override
@@ -89,6 +101,11 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
         ImageView ivNationalThumbnail;
 
 
+
+
+
+
+
         public NationalViewHolder(@NonNull View itemView) {
 
 
@@ -99,7 +116,11 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
             tvNationalName = itemView.findViewById(R.id.tvNationalName);
             ivNationalThumbnail = itemView.findViewById(R.id.ivNationalMeal);
 
+
         }
+
+
+
     }
 
     public void setList(List<NationalMeal> nationalMeals) {

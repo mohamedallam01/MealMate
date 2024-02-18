@@ -1,9 +1,10 @@
 package com.example.mealmate.model;
 
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.network.AreaResponse;
 import com.example.mealmate.network.CategoryResponse;
-import com.example.mealmate.network.DailyMealResponse;
+import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.NationalResponse;
 
 import java.util.List;
@@ -22,7 +23,8 @@ public interface MealsRepository {
     Observable<AreaResponse> getArea();
     Observable<CategoryResponse> getCategory();
     Observable<NationalResponse> getNational();
-    Flowable<List<DailyMeal>> getMealDetails(String id);
+    Flowable<List<DetailedMeal>> getDetailedMeal(String id);
+
 
 
 }

@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
 
     //play services
-    implementation'com.google.android.gms:play-services-auth:20.7.0'
+    implementation'com.google.android.gms:play-services-auth:21.0.0'
 
     //firebase auth
     implementation 'com.google.firebase:firebase-auth:22.3.1'
@@ -86,4 +86,8 @@ dependencies {
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //YouTube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28'
 }

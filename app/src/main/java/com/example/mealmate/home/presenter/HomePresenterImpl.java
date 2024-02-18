@@ -33,13 +33,13 @@ public class HomePresenterImpl implements HomePresenter {
                             if (dailyMeals != null) {
                                 if (dailyMeals != null) {
                                     homeView.showData(dailyMeals);
-                                    Log.i(TAG, "getMeal: Data received: " + dailyMeals);
+                                    Log.d(TAG, "getMeal: Data received: " + dailyMeals);
                                 }
                             }
                         },
                         error -> {
                             homeView.showErrorMsg("Failed to fetch meal");
-                            Log.i(TAG, "Error fetching data: " + error);
+                            Log.d(TAG, "Error fetching data: " + error);
                         }
                 );
     }

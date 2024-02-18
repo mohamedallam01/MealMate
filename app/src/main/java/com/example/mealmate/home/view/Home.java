@@ -138,6 +138,8 @@ public class Home extends Fragment implements HomeView {
     public void showNationalData(List<NationalMeal> nationalMealList) {
         nationalMealsAdapter.setList(nationalMealList);
         nationalMealsAdapter.notifyDataSetChanged();
+
+
     }
 
 

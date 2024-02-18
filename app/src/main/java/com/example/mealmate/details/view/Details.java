@@ -1,39 +1,54 @@
 package com.example.mealmate.details.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.R;
+import com.example.mealmate.db.MealsLocalDataSourceImpl;
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.details.presenter.DetailsPresenterImpl;
-import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.model.MealsRepository;
-import com.example.mealmate.network.DailyMealResponse;
+import com.example.mealmate.model.MealsRepositoryImpl;
+import com.example.mealmate.network.DetailedMealResponse;
+import com.example.mealmate.network.MealsRemoteDataSourceImpl;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.List;
 
 
 public class Details extends Fragment implements DetailsView {
 
+
+    private static final String TAG = "Details";
     ImageView ivMealDetails;
     TextView tvMealName;
 
     DetailsPresenterImpl detailsPresenter;
 
+    String videoId;
+
     MealsRepository mealsRepository;
 
-    DailyMealResponse dailyMealResponse;
+    DetailedMealResponse detailedMealResponse;
 
-    DailyMeal dailyMeal;
+    DetailedMeal detailedMeal;
+
+    TextView tvDetails;
 
 
     @Override
@@ -56,32 +71,87 @@ public class Details extends Fragment implements DetailsView {
 
         ivMealDetails = view.findViewById(R.id.ivMealDetails);
         tvMealName = view.findViewById(R.id.tvMealName);
+        tvDetails = view.findViewById(R.id.tvDetails);
 
-        detailsPresenter = new DetailsPresenterImpl(this, mealsRepository);
+
+        detailsPresenter = new DetailsPresenterImpl(this, MealsRepositoryImpl.getInstance(
+                MealsLocalDataSourceImpl.getInstance(requireContext()), MealsRemoteDataSourceImpl.getInstance(requireContext())
+        ));
         String mealID = DetailsArgs.fromBundle(getArguments()).getMealId();
-
-        dailyMealResponse = new DailyMealResponse();
-
-        detailsPresenter.getMealDetails(mealID,dailyMealResponse);
+        Log.d(TAG, "onViewCreated: " + mealID);
+        detailsPresenter.getMealDetails(mealID);
 
 
     }
 
     @Override
-    public void showDetails(DailyMealResponse dailyMealResponse) {
+    public void showDetails(List<DetailedMeal> detailedMealList) {
 
 
-        dailyMeal = dailyMealResponse.getDailyMeals().get(0);
+        if (detailedMealList != null && !detailedMealList.isEmpty()) {
+            detailedMeal = detailedMealList.get(0);
+            if (detailedMeal != null) {
+                TextView tvMealName = getView().findViewById(R.id.tvMealName);
+                ImageView ivMealDetails = getView().findViewById(R.id.ivMealDetails);
+                tvMealName.setText(detailedMeal.getStrMeal());
+
+                Glide.with(requireContext()).load(detailedMeal.getStrMealThumb())
+                        .apply(new RequestOptions().override(200, 200))
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_foreground)
+                        .into(ivMealDetails);
+
+            } else {
+                Log.e(TAG, "showDetails: Detailed meal is null");
+            }
+        } else {
+            Log.e(TAG, "showDetails: Detailed meal list is null or empty");
+        }
 
 
-        TextView tvMealName = getView().findViewById(R.id.tvMealName);
-        //TextView mealCountryTextView = getView().findViewById(R.id.meal_country);
-        //TextView txtInstructions = getView().findViewById(R.id.txtInstructions);
-        ImageView ivMealDetails = getView().findViewById(R.id.ivMealDetails);
+        String videoUrl = detailedMeal.getStrYoutube();
+        videoId = extractVideoIdFromUrl(videoUrl);
 
-        tvMealName.setText(dailyMeal.getStrMeal());
-        //mealCountryTextView.setText(pojoForMeal.getAreaOfMeal());
+        if (videoId != null) {
+            YouTubePlayerView youTubePlayerView = getView().findViewById(R.id.videoViewMeal);
+            getLifecycle().addObserver(youTubePlayerView);
 
+            youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    youTubePlayer.cueVideo(videoId, 0);
+                    Log.i(TAG, "onReady: " + videoId);
+                }
+
+                @Override
+                public void onError(YouTubePlayer youTubePlayer, PlayerConstants.PlayerError error) {
+                    super.onError(youTubePlayer, error);
+                    Log.e(TAG, "YouTube Player Error: " + error.toString());
+                }
+            });
+        } else {
+            Toast.makeText(requireContext(), "The Video is not Available", Toast.LENGTH_SHORT).show();
+        }
+
+
+        String ingredientsText = detailedMeal.strIngredient1 != null ? detailedMeal.strIngredient1 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient2 != null ? detailedMeal.strIngredient2 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient3 != null ? detailedMeal.strIngredient3 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient4 != null ? detailedMeal.strIngredient4 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient5 != null ? detailedMeal.strIngredient5 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient6 != null ? detailedMeal.strIngredient6 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient7 != null ? detailedMeal.strIngredient7 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient8 != null ? detailedMeal.strIngredient8 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient9 != null ? detailedMeal.strIngredient9 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient10 != null ? detailedMeal.strIngredient10 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient11 != null ? detailedMeal.strIngredient11 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient12 != null ? detailedMeal.strIngredient12 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient13 != null ? detailedMeal.strIngredient13 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient14 != null ? detailedMeal.strIngredient14 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient15 != null ? detailedMeal.strIngredient15 + "\n" : "";
+        ingredientsText += detailedMeal.strIngredient16 != null ? detailedMeal.strIngredient16 + "\n" : "";
+
+        tvDetails.setText(ingredientsText);
 
 
     }

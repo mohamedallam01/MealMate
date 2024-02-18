@@ -3,7 +3,6 @@ package com.example.mealmate.search.category.model;
 
 public class Category {
 
-
     private String idCategory;
 
     private String strCategory;

@@ -3,10 +3,14 @@ package com.example.mealmate.model;
 import android.util.Log;
 
 import com.example.mealmate.db.MealsLocalDataSource;
+import com.example.mealmate.details.model.DetailedMeal;
+import com.example.mealmate.details.presenter.DetailsPresenterImpl;
+import com.example.mealmate.details.view.DetailsView;
 import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.network.AreaResponse;
 import com.example.mealmate.network.CategoryResponse;
 import com.example.mealmate.network.DailyMealResponse;
+import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.MealService;
 import com.example.mealmate.network.MealsRemoteDataSource;
 import com.example.mealmate.network.NationalResponse;
@@ -29,6 +33,8 @@ public class MealsRepositoryImpl implements MealsRepository {
     MealService mealService;
 
     private static MealsRepositoryImpl mealsRepository = null;
+
+    DetailsView detailsView;
 
     private MealsRepositoryImpl(MealsLocalDataSource mealsLocalDataSource, MealsRemoteDataSource mealsRemoteDataSource) {
 
@@ -78,9 +84,7 @@ public class MealsRepositoryImpl implements MealsRepository {
     @Override
     public void insertMeal(DailyMeal dailyMeal) {
         Log.i(TAG, "Inserting meal: " + dailyMeal.getIdMeal());
-        localDataSource.insertMeal(new DailyMeal(
-                "", "", "", "", "", "", "", "", ""));
-
+        localDataSource.insertMeal(dailyMeal);
     }
 
     @Override
@@ -130,14 +134,23 @@ public class MealsRepositoryImpl implements MealsRepository {
     }
 
     @Override
-    public Flowable<List<DailyMeal>> getMealDetails(String id) {
+    public Flowable<List<DetailedMeal>> getDetailedMeal(String id) {
         return remoteDataSource.getMealDetails(id)
-               .map(
-                        DailyMealResponse::getDailyMeals
+                .doOnNext(mealResponse -> {
+                    Log.i(TAG, "getDetailedMeal: get meal from remote" + remoteDataSource.getMealDetails(id).toString());
+                }
+                ).map(
+                        DetailedMealResponse::getDetailedMeals
 
                 )
                 .toFlowable(BackpressureStrategy.LATEST)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(error -> {
+                    Log.e(TAG, "Error fetching detailed meal: " + error.getMessage());
+                });
     }
+
+
+
 }
