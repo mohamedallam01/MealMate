@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center">
 
@@ -14,52 +15,59 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnSaturday"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radioGroupDays"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/saturday" />
-    <Button
-        android:id="@+id/btnSunday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
 
-        android:text="@string/sunday" />
-    <Button
-        android:id="@+id/btnMonday"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:text="@string/monday" />
-    <Button
-        android:id="@+id/btnTuesDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/tuesday" />
-    <Button
-        android:id="@+id/btnWednesday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        <RadioButton
+            android:id="@+id/radioButtonSunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sunday" />
 
-        android:text="@string/wednesday" />
-    <Button
-        android:id="@+id/btnThursday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/radioButtonMonday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/monday" />
 
-        android:layout_gravity="center"
-        android:text="@string/thursday" />
+        <RadioButton
+            android:id="@+id/radioButtonTuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tuesday" />
 
-    <Button
-        android:id="@+id/btnFriday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/friday" />
+        <RadioButton
+            android:id="@+id/radioButtonWednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wednesday" />
+
+        <RadioButton
+            android:id="@+id/radioButtonThursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thursday" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFriday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friday" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSaturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saturday" />
+
+    </RadioGroup>
 
 
 </LinearLayout>
