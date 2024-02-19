@@ -16,13 +16,17 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.R;
+import com.example.mealmate.db.AppDataBase;
+import com.example.mealmate.db.MealDao;
 import com.example.mealmate.db.MealsLocalDataSourceImpl;
 import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.details.presenter.DetailsPresenterImpl;
+import com.example.mealmate.favorite.view.OnFavClickListener;
 import com.example.mealmate.model.MealsRepository;
 import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -31,7 +35,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import java.util.List;
 
 
-public class Details extends Fragment implements DetailsView {
+public class Details extends Fragment implements DetailsView, OnMealClickListener,OnFavClickListener {
 
 
     private static final String TAG = "Details";
@@ -50,10 +54,29 @@ public class Details extends Fragment implements DetailsView {
 
     TextView tvDetails;
 
+    FloatingActionButton fabFavorite;
+
+    OnMealClickListener onMealClickListener;
+
+    private boolean isFavorite = false;
+
+    OnFavClickListener onFavClickListener;
+
+    MealDao mealDao;
+
+    AppDataBase db;
+
+    int count;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = AppDataBase.getInstance(getContext());
+        mealDao = db.getMealDao();
+
+
 
 
     }
@@ -72,7 +95,10 @@ public class Details extends Fragment implements DetailsView {
         ivMealDetails = view.findViewById(R.id.ivMealDetails);
         tvMealName = view.findViewById(R.id.tvMealName);
         tvDetails = view.findViewById(R.id.tvDetails);
+        fabFavorite = view.findViewById(R.id.fabFavorite);
 
+        onMealClickListener = this;
+        onFavClickListener = this;
 
         detailsPresenter = new DetailsPresenterImpl(this, MealsRepositoryImpl.getInstance(
                 MealsLocalDataSourceImpl.getInstance(requireContext()), MealsRemoteDataSourceImpl.getInstance(requireContext())
@@ -80,6 +106,7 @@ public class Details extends Fragment implements DetailsView {
         String mealID = DetailsArgs.fromBundle(getArguments()).getMealId();
         Log.d(TAG, "onViewCreated: " + mealID);
         detailsPresenter.getMealDetails(mealID);
+        toggleFavoriteState();
 
 
     }
@@ -153,6 +180,16 @@ public class Details extends Fragment implements DetailsView {
 
         tvDetails.setText(ingredientsText);
 
+        fabFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                toggleFavoriteState();
+            }
+
+
+        });
+
 
     }
 
@@ -175,5 +212,65 @@ public class Details extends Fragment implements DetailsView {
             }
         }
         return videoId;
+    }
+
+    @Override
+    public void onMealClick(DetailedMeal detailedMeal) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                detailsPresenter.addToFav(detailedMeal);
+            }
+        }).start();
+
+
+    }
+
+
+    private void toggleFavoriteState() {
+        isFavorite = !isFavorite;
+
+        if (isFavorite) {
+            fabFavorite.setImageResource(R.drawable.baseline_favorite_24);
+            Toast.makeText(requireContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mealDao.insertMeal(detailedMeal);
+
+                }
+            }).start();
+
+
+        } else                                           {
+            fabFavorite.setImageResource(R.drawable.baseline_favorite_border_24);
+            Toast.makeText(requireContext(), "Removed from Favorites", Toast.LENGTH_SHORT).show();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mealDao.deleteMeal(detailedMeal);
+
+
+                }
+            }).start();
+
+
+
+
+
+        }
+    }
+
+    private boolean isMealInFavorites(String id) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                count = mealDao.countMealById(id);
+            }
+        }).start();
+        return count > 0;
     }
 }

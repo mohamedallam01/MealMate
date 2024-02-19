@@ -11,6 +11,16 @@
         android:layout_height="wrap_content"
         tools:context=".details.view.Details">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/medium_electric_blue"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/ivMealDetails"
+            app:srcCompat="@drawable/baseline_favorite_border_24"/>
+
 
         <ImageView
             android:id="@+id/ivMealDetails"

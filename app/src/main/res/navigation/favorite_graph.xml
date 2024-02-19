@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/favorite"
-        android:name="com.example.mealmate.favorite.Favorite"
+        android:name="com.example.mealmate.favorite.view.Favorite"
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite" />
 </navigation>

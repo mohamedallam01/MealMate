@@ -33,7 +33,7 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
 
     private final Context context;
 
-    // private OnProductClickListener onProductClickListener;
+    // private OnMealClickListener onProductClickListener;
 
     MealDao mealDao;
 
