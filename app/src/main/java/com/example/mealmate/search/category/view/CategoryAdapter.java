@@ -29,7 +29,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     private final Context context;
 
-    // private OnProductClickListener onProductClickListener;
+    // private OnMealClickListener onProductClickListener;
 
     MealDao mealDao;
 

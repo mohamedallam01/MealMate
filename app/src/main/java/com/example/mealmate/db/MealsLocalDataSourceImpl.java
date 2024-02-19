@@ -3,6 +3,7 @@ package com.example.mealmate.db;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.home.model.DailyMeal;
 
 import java.util.List;
@@ -19,11 +20,13 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
     private static MealsLocalDataSourceImpl localSource = null;
 
     private Flowable<List<DailyMeal>> dailyMeals;
+    private Flowable<List<DetailedMeal>> favoritesMeals;
 
     public MealsLocalDataSourceImpl(Context context) {
         AppDataBase db = AppDataBase.getInstance(context.getApplicationContext());
         mealDao = db.getMealDao();
         dailyMeals = mealDao.getDailyMeal();
+        favoritesMeals = mealDao.getFavorites();
     }
 
     public static MealsLocalDataSourceImpl getInstance(Context context) {
@@ -41,12 +44,12 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
     }
 
     @Override
-    public void insertMeal(DailyMeal dailyMeal) {
+    public void insertMeal(DetailedMeal detailedMeal) {
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                mealDao.insertMeal(dailyMeal);
+                mealDao.insertMeal(detailedMeal);
             }
         }).start();
 
@@ -95,8 +98,21 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
     }
 
     @Override
-    public void deleteMeal(DailyMeal dailyMeal) {
+    public void deleteMeal(DetailedMeal detailedMeal) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                mealDao.deleteMeal(detailedMeal);
+            }
+        }).start();
+
+
+    }
+
+    @Override
+    public Flowable<List<DetailedMeal>> getFavorites() {
+        return favoritesMeals;
     }
 }
 

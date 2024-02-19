@@ -13,6 +13,9 @@ public class Converters {
 
     @TypeConverter
     public static String fromList(List<String> stringList) {
+
+        if(stringList == null) return "";
+
         StringBuilder stringBuilder = new StringBuilder();
         for (String string : stringList) {
             stringBuilder.append(string).append(",");
@@ -30,14 +33,15 @@ public class Converters {
         return stringList;
     }
 
-    @TypeConverter
+/*    @TypeConverter
     public static Object fromString(String value) {
         Type listType = new TypeToken<List<String>>(){}.getType();
         return new Gson().fromJson(value, listType);
-    }
+    }*/
 
     @TypeConverter
     public static String fromObject(Object tags) {
         return new Gson().toJson(tags);
     }
 }
+

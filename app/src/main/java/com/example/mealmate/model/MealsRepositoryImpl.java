@@ -19,8 +19,11 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealsRepositoryImpl implements MealsRepository {
@@ -54,63 +57,83 @@ public class MealsRepositoryImpl implements MealsRepository {
 
 
     @Override
+    public void deleteDailyMeal(DailyMeal dailyMeal) {
+
+    }
+
+    @Override
+    public void insertDailyMeal(DailyMeal dailyMeal) {
+
+    }
+
+    @Override
     public Flowable<List<DailyMeal>> getDailyMeal() {
-        Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
-        Log.d(TAG, "meal returned from database" + localDataSource.getDailyMeal());
-        return remoteDataSource.getDailyMeal()
+
+        Flowable<List<DailyMeal>> remoteMeals = remoteDataSource.getDailyMeal().onErrorComplete(
+                        throwable -> {
+                            return true;
+                        }
+                )
                 .doOnNext(dailyMeal -> {
-                            Log.i(TAG, "getDailyMeal: get meal from remote" + remoteDataSource.getDailyMeal().toString());
-
                             insertMeals(dailyMeal.getDailyMeals());
-
-
                         }
                 ).map(
                         DailyMealResponse::getDailyMeals
-
                 )
-                .toFlowable(BackpressureStrategy.LATEST)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .toFlowable(BackpressureStrategy.LATEST);
+        Flowable<List<DailyMeal>> localMeals = localDataSource.getDailyMeal().onErrorComplete(
 
+                throwable -> {
+                    throwable.printStackTrace();
+                    return true;
+                }
+        );
+
+
+        return Flowable.concatArrayEager(remoteMeals, localMeals)
+                .onErrorComplete(throwable -> {
+                            throwable.printStackTrace();
+                            return true;
+                        }
+                )
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public void deleteMeal(DetailedMeal detailedMeal) {
+
+        localDataSource.deleteMeal(detailedMeal);
 
     }
 
     @Override
-    public void deleteMeal(DailyMeal dailyMeal) {
-
-    }
-
-    @Override
-    public void insertMeal(DailyMeal dailyMeal) {
-        Log.i(TAG, "Inserting meal: " + dailyMeal.getIdMeal());
-        localDataSource.insertMeal(dailyMeal);
+    public void insertDetailedMeal(DetailedMeal detailedMeal) {
+        Log.i(TAG, "Inserting meal: " + detailedMeal.getIdMeal());
+        localDataSource.insertMeal(detailedMeal);
     }
 
     @Override
     public void insertMeals(List<DailyMeal> dailyMeals) {
+        Completable.fromAction(() -> localDataSource.insertMeals(dailyMeals))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "onSubscribe: Called");
+                    }
 
-        localDataSource.insertMeals(dailyMeals);
-//        Log.d(TAG, "insertMeals: Daily meals size: " + dailyMeals.size());
-//        Completable.fromRunnable(() -> localDataSource.insertMeals(dailyMeals))
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new CompletableObserver() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                        Log.d(TAG, "onSubscribe: Called");
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        Log.d(TAG, "onComplete: Called");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.d(TAG, "onError: " + e.getMessage());
-//                    }
-//                });
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: Called");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                });
 
 
     }
@@ -151,6 +174,10 @@ public class MealsRepositoryImpl implements MealsRepository {
                 });
     }
 
+    @Override
+    public Flowable<List<DetailedMeal>> getFavorites() {
+        return localDataSource.getFavorites().subscribeOn(Schedulers.io());
+    }
 
 
 }

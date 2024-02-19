@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "DetailedMeal")
+@Entity(tableName = "detailed_meal_table")
 
 public class DetailedMeal {
 
@@ -18,6 +18,7 @@ public class DetailedMeal {
 
     @ColumnInfo(name = "strMeal")
     private String strMeal;
+
     @ColumnInfo(name = "strCategory")
     private String strCategory;
     @ColumnInfo(name = "strArea")

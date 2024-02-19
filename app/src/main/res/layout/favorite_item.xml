@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
@@ -9,16 +8,26 @@
     android:layout_marginStart="8dp"
     android:layout_marginBottom="8dp">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRemoveFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/medium_electric_blue"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/ivMealDetails"
+        app:srcCompat="@drawable/baseline_delete_24"
+        android:layout_gravity="end"
+        />
+
     <ImageView
-        android:id="@+id/ivArea"
+        android:id="@+id/ivFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@drawable/_x3_palestine_flag_image__03054"
         android:contentDescription="@string/area_image"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/tvAreaName"
+        android:id="@+id/tvFavMealName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"

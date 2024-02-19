@@ -27,7 +27,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder
 
     private final Context context;
 
-   // private OnProductClickListener onProductClickListener;
+   // private OnMealClickListener onProductClickListener;
 
     MealDao mealDao;
 

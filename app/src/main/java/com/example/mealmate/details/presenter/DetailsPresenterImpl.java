@@ -2,10 +2,10 @@ package com.example.mealmate.details.presenter;
 
 import android.util.Log;
 
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.details.view.DetailsView;
 import com.example.mealmate.model.MealsRepository;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DetailsPresenterImpl implements DetailsPresenter{
@@ -45,5 +45,10 @@ public class DetailsPresenterImpl implements DetailsPresenter{
                             detailsView.showErrorMsg("Failed to fetch meal");
                         });
 
+    }
+
+    @Override
+    public void addToFav(DetailedMeal detailedMeal) {
+        mealsRepository.insertDetailedMeal(detailedMeal);
     }
 }
