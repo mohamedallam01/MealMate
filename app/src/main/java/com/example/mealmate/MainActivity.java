@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.appcheck.interop.BuildConfig;
 
 import timber.log.Timber;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -43,40 +43,31 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        final BottomNavigationView.OnNavigationItemSelectedListener navItemSelectedListener =
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                        if (item.getItemId() == R.id.home) {
-                            navController.navigate(R.id.home_graph);
-                        } else if (item.getItemId() == R.id.search) {
-                            navController.navigate(R.id.search_graph);
-                        } else if (item.getItemId() == R.id.favorite) {
-                            navController.navigate(R.id.favorite_graph);
-                        } else if (item.getItemId() == R.id.profile) {
-                            navController.navigate(R.id.profile_graph);
-                        }
+        NavOptions navOptions = new NavOptions.Builder()
+                .setRestoreState(true)
+                .setPopUpTo(R.id.home,
+                        false,
+                        true)
+                .build();
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.home) {
+                    navController.navigate(R.id.home_graph, null, navOptions);
+                } else if (item.getItemId() == R.id.search) {
+                    navController.navigate(R.id.search_graph, null, navOptions);
+                } else if (item.getItemId() == R.id.favorite) {
+                    navController.navigate(R.id.favorite_graph, null, navOptions);
+                } else if (item.getItemId() == R.id.profile) {
+                    navController.navigate(R.id.profile_graph, null, navOptions);
+                }
 
-                        NavOptions navOptions = new NavOptions.Builder()
-                                .setLaunchSingleTop(true)
-                                .setRestoreState(true)
-                                .setPopUpTo(R.id.home,
-                                        false,
-                                        true)
-                                .build();
-                        navController.navigate(item.getItemId(), null, navOptions);
-
-                        return true;
-                    }
-                };
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(navItemSelectedListener);
-
-
+                return true;
+            }
+        });
 
     }
-
 
     public void setBottomNavigationVisibility(boolean isVisible) {
         bottomNavigationView.setVisibility(isVisible ? View.VISIBLE : View.GONE);

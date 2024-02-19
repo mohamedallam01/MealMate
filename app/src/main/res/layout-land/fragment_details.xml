@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,30 +14,22 @@
             android:id="@+id/fabFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/medium_electric_blue"
+            android:src="@drawable/baseline_favorite_border_24"
+            app:tint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/medium_electric_blue"
-            app:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/ivMealDetails"
-            app:srcCompat="@drawable/baseline_favorite_border_24"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabWeekPlan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/medium_electric_blue"
-            app:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/ivMealDetails"
-            app:srcCompat="@drawable/baseline_calendar_month_24"/>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivMealDetails"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/detail_meal_image"
             android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,56 +37,50 @@
 
         <TextView
             android:id="@+id/tvMealName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:background="@color/maastricht_blue"
             android:gravity="center"
             android:textSize="26sp"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/ivMealDetails"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivMealDetails"
             tools:text="Dummy Data" />
-
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/videoViewMeal"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvMoreDetailsTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMealName" />
-
 
         <TextView
             android:id="@+id/tvMoreDetailsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="26sp"
             android:text="@string/ingredients"
-            android:layout_marginStart="8dp"
+            android:textSize="26sp"
             android:textColor="@color/medium_electric_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/videoViewMeal" />
 
-
-            <TextView
-                android:id="@+id/tvDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/medium_electric_blue"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvMoreDetailsTitle"
-                tools:text="Dummy Details" />
-
-
+        <TextView
+            android:id="@+id/tvDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/medium_electric_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMoreDetailsTitle"
+            tools:text="Dummy Details" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

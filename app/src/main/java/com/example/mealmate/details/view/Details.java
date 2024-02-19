@@ -26,6 +26,8 @@ import com.example.mealmate.model.MealsRepository;
 import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
+import com.example.mealmate.weekplan.MealPlanManager;
+import com.example.mealmate.weekplan.WeekPlanDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -34,8 +36,15 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import timber.log.Timber;
 
-public class Details extends Fragment implements DetailsView, OnMealClickListener,OnFavClickListener {
+
+public class Details extends Fragment implements DetailsView, OnMealClickListener, OnFavClickListener {
 
 
     private static final String TAG = "Details";
@@ -66,7 +75,7 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
 
     AppDataBase db;
 
-    int count;
+    FloatingActionButton fabWeekPlan;
 
 
     @Override
@@ -75,8 +84,6 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
 
         db = AppDataBase.getInstance(getContext());
         mealDao = db.getMealDao();
-
-
 
 
     }
@@ -96,6 +103,7 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
         tvMealName = view.findViewById(R.id.tvMealName);
         tvDetails = view.findViewById(R.id.tvDetails);
         fabFavorite = view.findViewById(R.id.fabFavorite);
+        fabWeekPlan = view.findViewById(R.id.fabWeekPlan);
 
         onMealClickListener = this;
         onFavClickListener = this;
@@ -106,8 +114,6 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
         String mealID = DetailsArgs.fromBundle(getArguments()).getMealId();
         Log.d(TAG, "onViewCreated: " + mealID);
         detailsPresenter.getMealDetails(mealID);
-        toggleFavoriteState();
-
 
     }
 
@@ -127,6 +133,7 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_foreground)
                         .into(ivMealDetails);
+                isMealInFavorites(detailedMeal.getIdMeal());
 
             } else {
                 Log.e(TAG, "showDetails: Detailed meal is null");
@@ -183,7 +190,7 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
         fabFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                isFavorite = !isFavorite;
                 toggleFavoriteState();
             }
 
@@ -229,11 +236,9 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
 
 
     private void toggleFavoriteState() {
-        isFavorite = !isFavorite;
-
         if (isFavorite) {
             fabFavorite.setImageResource(R.drawable.baseline_favorite_24);
-            Toast.makeText(requireContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
+            //     Toast.makeText(requireContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -243,9 +248,9 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
             }).start();
 
 
-        } else                                           {
+        } else {
             fabFavorite.setImageResource(R.drawable.baseline_favorite_border_24);
-            Toast.makeText(requireContext(), "Removed from Favorites", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(requireContext(), "Removed from Favorites", Toast.LENGTH_SHORT).show();
 
             new Thread(new Runnable() {
                 @Override
@@ -255,22 +260,30 @@ public class Details extends Fragment implements DetailsView, OnMealClickListene
 
                 }
             }).start();
-
-
-
-
-
         }
     }
 
-    private boolean isMealInFavorites(String id) {
+    private void isMealInFavorites(String id) {
+        mealDao.countMealById(id).flatMapSingle(
+                count -> {
+                    return Single.just(count == 1);
+                }
+        ).onErrorReturnItem(false).subscribe(
+                isExist -> {
+                    isFavorite = isExist;
+                    Timber.d("is favorite : " + isFavorite);
+                    toggleFavoriteState();
+                }
+        );
+    }
 
-        new Thread(new Runnable() {
+
+    private void showWeekPlanDialog(){
+        WeekPlanDialog.show(requireContext(), new WeekPlanDialog.WeekPlanDialogListener() {
             @Override
-            public void run() {
-                count = mealDao.countMealById(id);
+            public void onMealSelected(String day, String meal) {
+
             }
-        }).start();
-        return count > 0;
+        });
     }
 }
