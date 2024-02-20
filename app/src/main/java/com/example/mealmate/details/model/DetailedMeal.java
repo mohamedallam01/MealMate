@@ -6,7 +6,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "detailed_meal_table")
-
 public class DetailedMeal {
 
 
@@ -89,6 +88,17 @@ public class DetailedMeal {
     @ColumnInfo(name = "MealIngredient20")
     public String strIngredient20;
 
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    @ColumnInfo(name = "day")
+    public String day;
+
 
     @ColumnInfo(name = "MealMeasure1")
     public String strMeasure1;
@@ -152,6 +162,9 @@ public class DetailedMeal {
     public String strMeasure20;
 
     private String weekDay;
+
+    @ColumnInfo(name = "isFavorite")
+    private Boolean isFavorite;
 
     public String getWeekDay() {
         return weekDay;
@@ -539,5 +552,15 @@ public class DetailedMeal {
     public void setStrMeasure20(String strMeasure20) {
         this.strMeasure20 = strMeasure20;
     }
+
+
+    public Boolean getFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        isFavorite = favorite;
+    }
+
 }
 

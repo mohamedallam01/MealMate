@@ -1,6 +1,11 @@
 package com.example.mealmate.network;
 
-import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.details.model.DetailedMeal;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import com.example.mealmate.details.model.DetailedMeal;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,10 +14,10 @@ public class DailyMealResponse {
 
 
     @SerializedName("meals")
-    public   List<DailyMeal> dailyMeals;
+    public   List<DetailedMeal> detailedMeals;
 
 
-    public List<DailyMeal> getDailyMeals() {
-        return dailyMeals;
+    public List<DetailedMeal> getDailyMeals() {
+        return detailedMeals;
     }
 }

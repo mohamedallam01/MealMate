@@ -4,11 +4,16 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.mealmate.details.model.DetailedMeal;
-import com.example.mealmate.home.model.DailyMeal;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
 
@@ -19,14 +24,12 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
 
     private static MealsLocalDataSourceImpl localSource = null;
 
-    private Flowable<List<DailyMeal>> dailyMeals;
-    private Flowable<List<DetailedMeal>> favoritesMeals;
+    private Flowable<List<DetailedMeal>> dailyMeals;
 
     public MealsLocalDataSourceImpl(Context context) {
         AppDataBase db = AppDataBase.getInstance(context.getApplicationContext());
         mealDao = db.getMealDao();
         dailyMeals = mealDao.getDailyMeal();
-        favoritesMeals = mealDao.getFavorites();
     }
 
     public static MealsLocalDataSourceImpl getInstance(Context context) {
@@ -38,63 +41,89 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
     }
 
     @Override
-    public Flowable<List<DailyMeal>> getDailyMeal() {
+    public Flowable<List<DetailedMeal>> getDetailedMeals() {
+        return mealDao.getDailyMeal();
+    }
 
-        return dailyMeals;
+    @Override
+    public Flowable<DetailedMeal> getSingleDetailedMeals(String id) {
+        return mealDao.getMealById(id);
     }
 
     @Override
     public void insertMeal(DetailedMeal detailedMeal) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Completable.fromAction(() -> mealDao.insertMeal(detailedMeal))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "onSubscribe: Called");
+                    }
 
-                mealDao.insertMeal(detailedMeal);
-            }
-        }).start();
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: Called");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                });
 
     }
 
     @Override
-    public void insertMeals(List<DailyMeal> dailyMeals) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                mealDao.insertMeals(dailyMeals);
-//            }
-//        }).start();
+    public void insertMeals(List<DetailedMeal> detailedMeals) {
+        Completable.fromAction(() -> mealDao.insertMeals(detailedMeals))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "onSubscribe: Called");
+                    }
 
-//        if (dailyMeals != null) {
-//            Log.d(TAG, "insertMeals: " + dailyMeals.size());
-//
-//            for (DailyMeal meal : dailyMeals) {
-//
-//                if (meal != null) {
-//                    Log.d(TAG, "Meal ID: " + meal.getIdMeal());
-//                } else {
-//                    Log.d(TAG, "attempted to insert null meals");
-//                }
-//
-//
-//            }
-//            Completable.fromRunnable(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mealDao.insertMeals(dailyMeals);
-//                        }
-//                    })
-//                    .subscribeOn(Schedulers.io())
-//                    .subscribe(() -> {
-//                                Log.d(TAG, "insertMeals: Successful ");
-//                            },
-//                            throwable -> {
-//                                Log.d(TAG, "insertMeals: Failed: " + throwable);
-//                            });
-//        } else {
-//            Log.d(TAG, "insertMeals: failed : Attempt to insert null list of daily meals");
-//        }
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: Called");
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                });
+    }
 
+    @Override
+    public void changeFavoriteState(DetailedMeal detailedMeal) {
+        Timber.d("changeFavoriteState");
+
+        detailedMeal.setFavorite(!detailedMeal.getFavorite());
+        Completable.fromAction(() -> mealDao.addToFavorite(detailedMeal))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d(TAG, "onSubscribe: Called");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete: Called");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                });
     }
 
     @Override
@@ -112,7 +141,7 @@ public class MealsLocalDataSourceImpl implements MealsLocalDataSource {
 
     @Override
     public Flowable<List<DetailedMeal>> getFavorites() {
-        return favoritesMeals;
+        return mealDao.getFavorites();
     }
 }
 

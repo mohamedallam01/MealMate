@@ -20,4 +20,15 @@
         android:layout_marginBottom="100dp"
         />
 
+    <EditText
+        android:id="@+id/etSearchCountry"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_shape_round_white"
+        android:hint="@string/search_by_country"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

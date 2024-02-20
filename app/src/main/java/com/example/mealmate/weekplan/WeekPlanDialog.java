@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import com.example.mealmate.R;
+import com.example.mealmate.weekplan.listener.WeekPlanDialogListener;
 
 public class WeekPlanDialog {
-
-    public interface WeekPlanDialogListener {
-        void onMealSelected(String day, String meal);
-    }
 
     public static void show(Context context, final WeekPlanDialogListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -29,9 +27,11 @@ public class WeekPlanDialog {
                     public void onClick(DialogInterface dialog, int which) {
                         int selectedRadioButtonId = radioGroupDays.getCheckedRadioButtonId();
                         RadioButton selectedRadioButton = radioGroupDays.findViewById(selectedRadioButtonId);
+                        Toast.makeText(context, "Meal Added", Toast.LENGTH_SHORT).show();
                         if (selectedRadioButton != null && listener != null) {
                             String selectedDay = selectedRadioButton.getText().toString();
-                            listener.onMealSelected(selectedDay, "");
+                            String mealId = "";
+                            listener.onMealSelected(selectedDay, mealId);
                         }
                     }
                 })
@@ -40,3 +40,4 @@ public class WeekPlanDialog {
         builder.create().show();
     }
 }
+

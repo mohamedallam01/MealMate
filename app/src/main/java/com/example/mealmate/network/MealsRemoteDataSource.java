@@ -1,8 +1,6 @@
 package com.example.mealmate.network;
 
-import com.example.mealmate.home.model.DailyMeal;
-
-import java.util.List;
+import io.reactivex.rxjava3.core.Observable;
 
 import io.reactivex.rxjava3.core.Observable;
 

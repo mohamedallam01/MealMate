@@ -1,10 +1,6 @@
 package com.example.mealmate.home.presenter;
 
-import com.example.mealmate.home.model.DailyMeal;
-
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Observable;
+import com.example.mealmate.details.model.DetailedMeal;
 
 public interface HomePresenter {
 
@@ -12,5 +8,5 @@ public interface HomePresenter {
 
     void getAllNationalMeals();
 
-    void addToFav(DailyMeal dailyMeal);
+    void addToFav(DetailedMeal detailedMeal);
 }

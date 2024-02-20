@@ -2,7 +2,7 @@ package com.example.mealmate.home.presenter;
 
 import android.util.Log;
 
-import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.home.view.HomeView;
 import com.example.mealmate.model.MealsRepository;
 
@@ -62,7 +62,7 @@ public class HomePresenterImpl implements HomePresenter {
 
 
     @Override
-    public void addToFav(DailyMeal dailyMeal) {
+    public void addToFav(DetailedMeal detailedMeal) {
 
     }
 }

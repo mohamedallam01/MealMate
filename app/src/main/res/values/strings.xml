@@ -58,4 +58,8 @@
     <string name="add_to_calender">Add to Calender</string>
     <string name="national_meals">National Meals</string>
     <string name="ingredients">Ingredients</string>
+    <string name="log_out">Log out</string>
+    <string name="week_plan">Week Plan</string>
+    <string name="remove_meal_from_week_plan">Remove Meal from Week Plan</string>
+    <string name="search_by_country">Search by Country</string>
 </resources>
