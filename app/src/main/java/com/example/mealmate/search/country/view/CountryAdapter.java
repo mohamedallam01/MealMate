@@ -2,10 +2,13 @@ package com.example.mealmate.search.country.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,27 +17,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealDao;
-import com.example.mealmate.search.country.model.Area;
+import com.example.mealmate.search.country.model.Country;
+import com.example.mealmate.search.country.presenter.CountryPresenter;
 
 import java.util.List;
 
-public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder> {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.AreaViewHolder> {
 
-    private final List<Area> areaList;
+    private final List<Country> countryList;
 
 
-    public static final String TAG = "AreaAdapter";
+    public static final String TAG = "CountryAdapter";
 
     private final Context context;
+
+    CountryPresenter countryPresenter;
 
    // private OnMealClickListener onProductClickListener;
 
     MealDao mealDao;
 
 
-    public AreaAdapter(Context context, List<Area> areaList) {
+    public CountryAdapter(Context context, List<Country> countryList) {
         this.context = context;
-        this.areaList = areaList;
+        this.countryList = countryList;
 
 
     }
@@ -58,8 +64,8 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder
     @Override
     public void onBindViewHolder(@NonNull AreaViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Area area = areaList.get(position);
-        holder.tvCountryName.setText(area.getStrArea());
+        Country country = countryList.get(position);
+        holder.tvCountryName.setText(country.getStrArea());
 
 
         if(position == 0){
@@ -149,19 +155,14 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder
         }
 
 
-
-
-
-
-
         Log.i(TAG, "onBindViewHolder: ");
 
     }
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "getItemCount: " + areaList.size());
-        return areaList.size();
+        Log.i(TAG, "getItemCount: " + countryList.size());
+        return countryList.size();
 
     }
 
@@ -170,24 +171,24 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder
 
         TextView tvCountryName;
         ImageView ivThumbnail;
+        public AreaViewHolder(@NonNull View view) {
 
 
-        public AreaViewHolder(@NonNull View itemView) {
-
-
-            super(itemView);
+            super(view);
 
             Log.i(TAG, "AreaViewHolder: ");
 
-            tvCountryName = itemView.findViewById(R.id.tvAreaName);
-            ivThumbnail = itemView.findViewById(R.id.ivArea);
+            tvCountryName = view.findViewById(R.id.tvAreaName);
+            ivThumbnail = view.findViewById(R.id.ivArea);
+
+
 
         }
     }
 
-    public void setList(List<Area> area) {
+    public void setList(List<Country> country) {
 
-        areaList.addAll(area);
+        countryList.addAll(country);
     }
 
 }

@@ -33,8 +33,8 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.MealPl
 
     public WeekPlanAdapter(Context context, List<DetailedMeal> mealPlan, MealPlanManager mealPlanManager) {
         this.context = context;
-        this.mealPlan = mealPlan;
         this.mealPlanManager = mealPlanManager;
+        this.mealPlan = mealPlanManager.getMealPlanFromSharedPreferences(context);
     }
 
     @NonNull
@@ -61,7 +61,8 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.MealPl
             @Override
             public void onClick(View view) {
 
-                mealPlan.remove(position);
+                mealPlanManager.removeMealFromSharedPreferences(context, meal.getIdMeal());
+                mealPlan.remove(holder.getAdapterPosition());
                 notifyDataSetChanged();
 
             }

@@ -6,13 +6,17 @@ import android.util.Log;
 import com.example.mealmate.db.AppDataBase;
 import com.example.mealmate.db.MealDao;
 import com.example.mealmate.details.model.DetailedMeal;
+import com.example.mealmate.search.country.model.Country;
 
 import java.util.List;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -31,10 +35,17 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
 
     private MealsRemoteDataSourceImpl(Context context) {
 
+        int size = 10 * 24 * 24;
+        Cache cache = new Cache(context.getCacheDir(),size);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
+
         db = AppDataBase.getInstance(context);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
@@ -72,12 +83,12 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
     }
 
     @Override
-    public Observable<AreaResponse> getAreas() {
+    public Observable<CountriesResponse> getCountries() {
         return mealService.getArea()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(areaResponse -> {
-                    areaResponse.getAreas();
+                    areaResponse.getCountries();
                     Log.i(TAG, "getAreas: The Country Is Here");
                 })
                 .onErrorResumeNext(error -> {
@@ -138,7 +149,21 @@ public class MealsRemoteDataSourceImpl implements MealsRemoteDataSource {
                 });
     }
 
+    @Override
+    public Observable<DetailedMealResponse> getMealSearch(String key) {
+        Log.i(TAG, "getMealSearch: Fetching meal data from remote data source");
 
+        Single<DetailedMealResponse> mealsBySearch = mealService.getSearchByName(key);
+
+        return mealsBySearch
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toObservable()
+                .doOnNext(detailedMealResponse -> {
+                    detailedMealResponse.getDetailedMeals();
+                })
+                .map(detailedMealResponse -> detailedMealResponse);
+    }
 
 
 }

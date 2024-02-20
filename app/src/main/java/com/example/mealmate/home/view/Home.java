@@ -108,7 +108,7 @@ public class Home extends Fragment implements HomeView {
             Glide.with(requireContext())
                     .load(detailedMeal.getStrMealThumb())
                     .apply(new RequestOptions().override(200, 200))
-                    .placeholder(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.place_holder)
                     .error(R.drawable.ic_launcher_foreground)
                     .into(ivDailyMeal);
             Log.i(TAG, "showData: get in show data successful ");
