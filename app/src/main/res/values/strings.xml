@@ -62,4 +62,5 @@
     <string name="week_plan">Week Plan</string>
     <string name="remove_meal_from_week_plan">Remove Meal from Week Plan</string>
     <string name="search_by_country">Search by Country</string>
+    <string name="write_meal_name">Write Meal Name</string>
 </resources>

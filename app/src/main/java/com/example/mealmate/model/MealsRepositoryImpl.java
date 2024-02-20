@@ -5,12 +5,14 @@ import android.util.Log;
 import com.example.mealmate.db.MealsLocalDataSource;
 import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.details.view.DetailsView;
-import com.example.mealmate.network.AreaResponse;
+import com.example.mealmate.network.CountriesResponse;
 import com.example.mealmate.network.CategoryResponse;
 import com.example.mealmate.network.DailyMealResponse;
+import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.MealService;
 import com.example.mealmate.network.MealsRemoteDataSource;
 import com.example.mealmate.network.NationalResponse;
+import com.example.mealmate.search.country.model.Country;
 
 import java.util.List;
 
@@ -104,8 +106,8 @@ public class MealsRepositoryImpl implements MealsRepository {
     }
 
     @Override
-    public Observable<AreaResponse> getArea() {
-        return remoteDataSource.getAreas()
+    public Observable<CountriesResponse> getCountries() {
+        return remoteDataSource.getCountries()
                 .subscribeOn(Schedulers.io());
     }
 
@@ -151,6 +153,12 @@ public class MealsRepositoryImpl implements MealsRepository {
     @Override
     public Flowable<List<DetailedMeal>> getFavorites() {
         return localDataSource.getFavorites().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<DetailedMealResponse> getSearchByName(String query) {
+        return remoteDataSource.getMealSearch(query);
+
     }
 
 

@@ -4,7 +4,7 @@ package com.example.mealmate.search.country.model;
 import androidx.room.Entity;
 
 @Entity(tableName = "area")
-public class Area {
+public class Country {
 
         private String strArea;
 

@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvSearch"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,15 +10,14 @@
     android:layout_marginBottom="8dp">
 
     <ImageView
-        android:id="@+id/ivArea"
+        android:id="@+id/ivSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@drawable/_x3_palestine_flag_image__03054"
         android:contentDescription="@string/area_image"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/tvAreaName"
+        android:id="@+id/tvSearchMealName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"

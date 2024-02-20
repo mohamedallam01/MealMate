@@ -31,17 +31,22 @@ public class CountryPresenterImpl implements CountryPresenter {
     @Override
     public void getAllCountries() {
         Log.i(TAG, "getAllCountries: ");
-        mealsRepository.getArea()
+        mealsRepository.getCountries()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(areaResponse -> {
-                            countryView.showAreaData(areaResponse.getAreas());
-                            Log.i(TAG, "getAllCountries: " + areaResponse.areas.toString());
+                            countryView.showCountriesData(areaResponse.getCountries());
+                            Log.i(TAG, "getAllCountries: " + areaResponse.countries.toString());
                         },
                         error -> {
                             countryView.showErrorMsg("Failed to fetch Areas");
                             Log.i(TAG, "Error fetching Areas: " + error);
                         }
                 );
+    }
+
+    @Override
+    public void searchFilterCountry(String search) {
+        mealsRepository.getCountries();
     }
 }

@@ -27,10 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/medium_electric_blue"
         app:menu="@menu/bottom_nav_menu"
-
         />
 
-<!--    app:itemIconTint="@color/bottom_nav_items_color"-->
-<!--    app:labelVisibilityMode="labeled"-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

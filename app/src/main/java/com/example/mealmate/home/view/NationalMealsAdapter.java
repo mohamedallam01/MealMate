@@ -71,7 +71,7 @@ public class NationalMealsAdapter extends RecyclerView.Adapter<NationalMealsAdap
 
         Glide.with(context).load(nationalMeal.getMealThumbUrl())
                 .apply(new RequestOptions().override(200, 200))
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.place_holder)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.ivNationalThumbnail);
 

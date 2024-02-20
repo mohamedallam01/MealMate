@@ -1,12 +1,12 @@
 package com.example.mealmate.search.country.view;
 
-import com.example.mealmate.search.country.model.Area;
+import com.example.mealmate.search.country.model.Country;
 
 import java.util.List;
 
 public interface CountryView {
 
-    void showAreaData(List<Area> areaList);
+    void showCountriesData(List<Country> countryList);
 
     void showErrorMsg(String error);
 

@@ -6,19 +6,22 @@
     app:startDestination="@id/search">
 
     <fragment
+        android:id="@+id/details"
+        android:name="com.example.mealmate.details.view.Details"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="meal_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
         android:id="@+id/search"
         android:name="com.example.mealmate.search.view.Search"
         android:label="Search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_search_to_byCategory"
-            app:destination="@id/byCategory" />
-        <action
-            android:id="@+id/action_search_to_byIngredients"
-            app:destination="@id/byIngredients" />
-        <action
-            android:id="@+id/action_search_to_byCountry"
-            app:destination="@id/byCountry" />
+            android:id="@+id/action_search_to_details"
+            app:destination="@id/details" />
     </fragment>
     <fragment
         android:id="@+id/byCategory"

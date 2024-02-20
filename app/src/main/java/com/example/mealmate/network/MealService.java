@@ -1,6 +1,7 @@
 package com.example.mealmate.network;
 
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -10,7 +11,7 @@ public interface MealService {
     Observable<DailyMealResponse> getDailyMeal();
 
     @GET("list.php?a=list")
-    Observable<AreaResponse> getArea();
+    Observable<CountriesResponse> getArea();
 
     @GET("categories.php")
     Observable<CategoryResponse> getCategory();
@@ -20,5 +21,8 @@ public interface MealService {
 
     @GET("lookup.php?i=")
     Observable<DetailedMealResponse> getMealDetails(@Query("i") String mealId);
+
+    @GET("search.php")
+    Single<DetailedMealResponse> getSearchByName(@Query("s") String mealName);
 
 }

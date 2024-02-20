@@ -4,4 +4,6 @@ public interface CountryPresenter {
 
     void getAllCountries();
 
+    void searchFilterCountry(String search);
+
 }

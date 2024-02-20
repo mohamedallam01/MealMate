@@ -8,15 +8,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealsLocalDataSourceImpl;
 import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
-import com.example.mealmate.search.country.model.Area;
+import com.example.mealmate.search.country.model.Country;
 import com.example.mealmate.search.country.presenter.CountryPresenterImpl;
 
 import java.util.ArrayList;
@@ -32,9 +36,11 @@ public class ByCountry extends Fragment implements CountryView {
 
     RecyclerView rvCountry;
 
-    private List<Area> areaList;
+    private List<Country> countryList;
 
-    AreaAdapter areaAdapter;
+    CountryAdapter countryAdapter;
+
+    EditText etSearchCountry;
 
 
     @Override
@@ -59,31 +65,65 @@ public class ByCountry extends Fragment implements CountryView {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        areaList = new ArrayList<>();
-        areaAdapter = new AreaAdapter(requireContext(), areaList);
+        countryList = new ArrayList<>();
+        countryAdapter = new CountryAdapter(requireContext(), countryList);
 
         countryPresenter = new CountryPresenterImpl(this, MealsRepositoryImpl.getInstance(
                 MealsLocalDataSourceImpl.getInstance(requireContext()), MealsRemoteDataSourceImpl.getInstance(requireContext())
         ));
 
         rvCountry.setLayoutManager(linearLayoutManager);
-        rvCountry.setAdapter(areaAdapter);
+        rvCountry.setAdapter(countryAdapter);
         countryPresenter.getAllCountries();
 
+
+        if (etSearchCountry != null) {
+            etSearchCountry.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String query = charSequence.toString().trim();
+                    Log.d("ByCountryFragment", "Text changed: " + query);
+                    doSearch(query);
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+        }
+
+
+    }
+
+    private void doSearch(String query) {
+        Log.d(TAG, "Performing search with query: " + query);
+        if (!query.isEmpty()) {
+            countryPresenter.getAllCountries();
+        } else {
+            countryAdapter.setList(new ArrayList<>());
+        }
     }
 
 
     @Override
-    public void showAreaData(List<Area> areaList) {
+    public void showCountriesData(List<Country> countryList) {
 
-
-            areaAdapter.setList(areaList);
-            areaAdapter.notifyDataSetChanged();
+        this.countryList.clear();
+        countryAdapter.setList(countryList);
+        countryAdapter.notifyDataSetChanged();
 
     }
 
     @Override
-    public void showErrorMsg (String error){
+    public void showErrorMsg(String error) {
 
     }
 

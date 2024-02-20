@@ -1,73 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><!-- dialog_week_plan.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <!-- dialog_week_plan.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:text="@string/choose_a_day_to_add_the_meal"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:textColor="@color/medium_electric_blue"
+        android:gravity="center" />
 
     <RadioGroup
         android:id="@+id/radioGroupDays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical">
 
         <RadioButton
             android:id="@+id/radioButtonSunday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sunday" />
+            android:text="@string/sunday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonMonday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/monday" />
+            android:text="@string/monday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonTuesday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tuesday" />
+            android:text="@string/tuesday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonWednesday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wednesday" />
+            android:text="@string/wednesday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonThursday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/thursday" />
+            android:text="@string/thursday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonFriday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/friday" />
+            android:text="@string/friday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
 
         <RadioButton
             android:id="@+id/radioButtonSaturday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/saturday" />
+            android:text="@string/saturday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
 
     </RadioGroup>
-
-
 </LinearLayout>

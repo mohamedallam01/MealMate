@@ -2,6 +2,7 @@ package com.example.mealmate;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+
+
 
 
         NavOptions navOptions = new NavOptions.Builder()

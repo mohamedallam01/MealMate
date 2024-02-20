@@ -84,6 +84,25 @@ public class MealPlanManager {
             return new ArrayList<>();
         }
     }
+
+    public void removeMealFromSharedPreferences(Context context, String mealId) {
+        List<DetailedMeal> mealPlan = getMealPlanFromSharedPreferences(context);
+        for (DetailedMeal meal : mealPlan) {
+            if (meal.getIdMeal().equals(mealId)) {
+                mealPlan.remove(meal);
+                break;
+            }
+        }
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_KEY_MEAL, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(mealPlan);
+        editor.putString(PREF_KEY_MEAL, json);
+        editor.apply();
+    }
+
+
 }
 
 
