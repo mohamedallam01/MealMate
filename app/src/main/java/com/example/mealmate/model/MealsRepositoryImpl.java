@@ -4,13 +4,10 @@ import android.util.Log;
 
 import com.example.mealmate.db.MealsLocalDataSource;
 import com.example.mealmate.details.model.DetailedMeal;
-import com.example.mealmate.details.presenter.DetailsPresenterImpl;
 import com.example.mealmate.details.view.DetailsView;
-import com.example.mealmate.home.model.DailyMeal;
 import com.example.mealmate.network.AreaResponse;
 import com.example.mealmate.network.CategoryResponse;
 import com.example.mealmate.network.DailyMealResponse;
-import com.example.mealmate.network.DetailedMealResponse;
 import com.example.mealmate.network.MealService;
 import com.example.mealmate.network.MealsRemoteDataSource;
 import com.example.mealmate.network.NationalResponse;
@@ -19,11 +16,8 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealsRepositoryImpl implements MealsRepository {
@@ -39,7 +33,7 @@ public class MealsRepositoryImpl implements MealsRepository {
 
     DetailsView detailsView;
 
-    private MealsRepositoryImpl(MealsLocalDataSource mealsLocalDataSource, MealsRemoteDataSource mealsRemoteDataSource) {
+    public MealsRepositoryImpl(MealsLocalDataSource mealsLocalDataSource, MealsRemoteDataSource mealsRemoteDataSource) {
 
         this.localDataSource = mealsLocalDataSource;
         this.remoteDataSource = mealsRemoteDataSource;
@@ -57,23 +51,20 @@ public class MealsRepositoryImpl implements MealsRepository {
 
 
     @Override
-    public void deleteDailyMeal(DailyMeal dailyMeal) {
+    public void deleteDailyMeal(DetailedMeal detailedMeal) {
 
     }
 
     @Override
-    public void insertDailyMeal(DailyMeal dailyMeal) {
+    public void insertDailyMeal(DetailedMeal detailedMeal) {
 
     }
 
     @Override
-    public Flowable<List<DailyMeal>> getDailyMeal() {
+    public Flowable<List<DetailedMeal>> getDailyMeal() {
 
-        Flowable<List<DailyMeal>> remoteMeals = remoteDataSource.getDailyMeal().onErrorComplete(
-                        throwable -> {
-                            return true;
-                        }
-                )
+        Flowable<List<DetailedMeal>> remoteMeals = remoteDataSource.getDailyMeal()
+
                 .doOnNext(dailyMeal -> {
                             insertMeals(dailyMeal.getDailyMeals());
                         }
@@ -81,13 +72,9 @@ public class MealsRepositoryImpl implements MealsRepository {
                         DailyMealResponse::getDailyMeals
                 )
                 .toFlowable(BackpressureStrategy.LATEST);
-        Flowable<List<DailyMeal>> localMeals = localDataSource.getDailyMeal().onErrorComplete(
 
-                throwable -> {
-                    throwable.printStackTrace();
-                    return true;
-                }
-        );
+
+        Flowable<List<DetailedMeal>> localMeals = localDataSource.getDetailedMeals();
 
 
         return Flowable.concatArrayEager(remoteMeals, localMeals)
@@ -100,41 +87,19 @@ public class MealsRepositoryImpl implements MealsRepository {
     }
 
     @Override
-    public void deleteMeal(DetailedMeal detailedMeal) {
+    public void deleteMeal(com.example.mealmate.details.model.DetailedMeal detailedMeal) {
 
         localDataSource.deleteMeal(detailedMeal);
 
     }
 
     @Override
-    public void insertDetailedMeal(DetailedMeal detailedMeal) {
-        Log.i(TAG, "Inserting meal: " + detailedMeal.getIdMeal());
-        localDataSource.insertMeal(detailedMeal);
+    public void changeFavoriteState(com.example.mealmate.details.model.DetailedMeal detailedMeal) {
+        localDataSource.changeFavoriteState(detailedMeal);
     }
 
     @Override
-    public void insertMeals(List<DailyMeal> dailyMeals) {
-        Completable.fromAction(() -> localDataSource.insertMeals(dailyMeals))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.d(TAG, "onSubscribe: Called");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "onComplete: Called");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "onError: " + e.getMessage());
-                        e.printStackTrace();
-                    }
-                });
-
+    public void insertMeals(List<DetailedMeal> detailedMeals) {
 
     }
 
@@ -157,14 +122,14 @@ public class MealsRepositoryImpl implements MealsRepository {
     }
 
     @Override
-    public Flowable<List<DetailedMeal>> getDetailedMeal(String id) {
-        return remoteDataSource.getMealDetails(id)
+    public Flowable<DetailedMeal> getSingleDetailMeals(String id) {
+        Flowable<DetailedMeal> remoteMeal = remoteDataSource.getMealDetails(id)
                 .doOnNext(mealResponse -> {
-                    Log.i(TAG, "getDetailedMeal: get meal from remote" + remoteDataSource.getMealDetails(id).toString());
-                }
+                            Log.i(TAG, "getDetailedMeal: get meal from remote" + remoteDataSource.getMealDetails(id).toString());
+                        }
                 ).map(
-                        DetailedMealResponse::getDetailedMeals
-
+                        detailedMealResponse ->
+                                detailedMealResponse.detailedMeals.get(0)
                 )
                 .toFlowable(BackpressureStrategy.LATEST)
                 .subscribeOn(Schedulers.io())
@@ -172,11 +137,20 @@ public class MealsRepositoryImpl implements MealsRepository {
                 .doOnError(error -> {
                     Log.e(TAG, "Error fetching detailed meal: " + error.getMessage());
                 });
+
+        Flowable<DetailedMeal> localMeals = localDataSource.getSingleDetailedMeals(id).onErrorComplete(
+                throwable -> {
+                    return true;
+                }
+        );
+
+        return Flowable.concatArrayEager(remoteMeal, localMeals).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
     }
 
     @Override
     public Flowable<List<DetailedMeal>> getFavorites() {
-        return localDataSource.getFavorites().subscribeOn(Schedulers.io());
+        return localDataSource.getFavorites().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
 

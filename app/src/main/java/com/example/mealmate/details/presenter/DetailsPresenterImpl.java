@@ -7,6 +7,7 @@ import com.example.mealmate.details.view.DetailsView;
 import com.example.mealmate.model.MealsRepository;
 
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class DetailsPresenterImpl implements DetailsPresenter{
 
@@ -15,7 +16,7 @@ public class DetailsPresenterImpl implements DetailsPresenter{
 
     private static final String TAG = "DetailsPresenterImpl";
 
-   DetailsView detailsView;
+    DetailsView detailsView;
 
 
     public DetailsPresenterImpl(DetailsView detailsView, MealsRepository mealsRepository) {
@@ -27,7 +28,7 @@ public class DetailsPresenterImpl implements DetailsPresenter{
     public void getMealDetails(String id) {
 
         Log.i(TAG, "getMealDetails: " + id);
-        mealsRepository.getDetailedMeal(id)
+        mealsRepository.getSingleDetailMeals(id)
                 .subscribeOn(Schedulers.io())
                 .doOnNext(detailedMeals -> {
                             if (detailedMeals != null) {
@@ -49,6 +50,9 @@ public class DetailsPresenterImpl implements DetailsPresenter{
 
     @Override
     public void addToFav(DetailedMeal detailedMeal) {
-        mealsRepository.insertDetailedMeal(detailedMeal);
+        Timber.d("addToFav");
+
+
+        mealsRepository.changeFavoriteState(detailedMeal);
     }
 }

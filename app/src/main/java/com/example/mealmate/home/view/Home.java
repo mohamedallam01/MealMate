@@ -22,14 +22,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.mealmate.MainActivity;
 import com.example.mealmate.R;
 import com.example.mealmate.db.MealsLocalDataSourceImpl;
-import com.example.mealmate.home.model.DailyMeal;
+import com.example.mealmate.details.model.DetailedMeal;
 import com.example.mealmate.home.model.NationalMeal;
 import com.example.mealmate.home.presenter.HomePresenterImpl;
 import com.example.mealmate.model.MealsRepositoryImpl;
 import com.example.mealmate.network.MealsRemoteDataSourceImpl;
-import com.example.mealmate.search.country.model.Area;
-import com.example.mealmate.search.country.presenter.CountryPresenterImpl;
-import com.example.mealmate.search.country.view.AreaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,13 +100,13 @@ public class Home extends Fragment implements HomeView {
 
 
     @Override
-    public void showData(List<DailyMeal> dailyMealList) {
+    public void showData(List<DetailedMeal> detailedMealList) {
 
-        DailyMeal dailyMeal = dailyMealList.get(0);
-        if (!dailyMealList.isEmpty()) {
-            tvDailyName.setText(dailyMeal.getStrMeal());
+        DetailedMeal detailedMeal = detailedMealList.get(0);
+        if (!detailedMealList.isEmpty()) {
+            tvDailyName.setText(detailedMeal.getStrMeal());
             Glide.with(requireContext())
-                    .load(dailyMeal.getStrMealThumb())
+                    .load(detailedMeal.getStrMealThumb())
                     .apply(new RequestOptions().override(200, 200))
                     .placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground)
@@ -127,7 +124,7 @@ public class Home extends Fragment implements HomeView {
         cvDailyMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HomeDirections.ActionHomeToDetails action = HomeDirections.actionHomeToDetails(dailyMeal.getIdMeal());
+                HomeDirections.ActionHomeToDetails action = HomeDirections.actionHomeToDetails(detailedMeal.getIdMeal());
                 Navigation.findNavController(view).navigate(action);
             }
         });

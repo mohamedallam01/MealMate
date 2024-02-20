@@ -8,5 +8,14 @@
         android:id="@+id/profile"
         android:name="com.example.mealmate.profile.Profile"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_weekPlanFragment"
+            app:destination="@id/weekPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weekPlanFragment"
+        android:name="com.example.mealmate.weekplan.view.WeekPlanFragment"
+        android:label="fragment_week_plan"
+        tools:layout="@layout/fragment_week_plan" />
 </navigation>
