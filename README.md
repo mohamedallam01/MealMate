@@ -6,7 +6,7 @@ MealMate is an Android mobile application designed to assist users in planning t
 ## Project Features
 - **Splash Screen**: Displays a splash screen with animation using Lottie.
 - 
-  <div style="display:flex; justify-content:space-between;">
+  <div style="display:flex; justify-content:center">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true" width="30%">
 </div>
 
@@ -23,22 +23,22 @@ MealMate is an Android mobile application designed to assist users in planning t
 </div>
 
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration and discover National Meals according to the country they live in
-  <div style="display:flex; justify-content:space-between;">
+  <div style="display:flex; justify-content:center">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/home.jpg?raw=true" width="30%">
 </div>
 
 - **Search Functionality**: Users can search for meals based on country, ingredient, or category.
-  <div style="display:flex; justify-content:space-between;">
+  <div style="display:flex; justify-content:center">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/search.jpg?raw=true" width="30%">
 </div>
 
 - **Favorite Meals**: Users can add meals to favorites or remove them. (Local storage using Room, Firebase not allowed)
-  <div style="display:flex; justify-content:space-between;">
+  <div style="display:flex; justify-content:center">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/favorite.jpg?raw=true" width="30%">
 </div>
 
 - **Weekly Meal Planning**: Users can view and add meals for the current week.
-  <div style="display:flex; justify-content:space-between;">
+  <div style="display:flex; justify-content:center">
      <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/days.jpg?raw=true" width="30%">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/week%20plan.jpg?raw=true" width="30%">
 </div>
