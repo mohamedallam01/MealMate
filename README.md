@@ -13,9 +13,9 @@ MealMate is an Android mobile application designed to assist users in planning t
   - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
   ![Authentication]
 <div style="display:flex; justify-content:center;">
-    <img src="[url_to_image1](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/register_login.jpg?raw=true)" width="30%">
-    <img src="[url_to_image2](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/registeration%20form.jpg?raw=true)" width="30%">
-    <img src="[url_to_image3](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true)" width="30%">
+    <img src="(https://github.com/mohamedallam01/MealMate/blob/master/screenshots/register_login.jpg?raw=true)" width="30%">
+    <img src="(https://github.com/mohamedallam01/MealMate/blob/master/screenshots/registeration%20form.jpg?raw=true)" width="30%">
+    <img src="(https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true)" width="30%">
 </div>
 
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration.
