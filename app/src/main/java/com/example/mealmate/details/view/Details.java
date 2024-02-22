@@ -229,11 +229,8 @@ public class Details extends Fragment implements DetailsView {
     private void toggleFavoriteState() {
         if (isFavorite) {
             fabFavorite.setImageResource(R.drawable.baseline_favorite_24);
-            //     Toast.makeText(requireContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
-
         } else {
             fabFavorite.setImageResource(R.drawable.baseline_favorite_border_24);
-            //    Toast.makeText(requireContext(), "Removed from Favorites", Toast.LENGTH_SHORT).show();
         }
     }
 

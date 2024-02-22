@@ -22,7 +22,7 @@ public interface MealService {
     @GET("lookup.php?i=")
     Observable<DetailedMealResponse> getMealDetails(@Query("i") String mealId);
 
-    @GET("search.php")
+    @GET("search.php?s=")
     Single<DetailedMealResponse> getSearchByName(@Query("s") String mealName);
 
 }
