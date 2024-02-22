@@ -18,8 +18,6 @@ MealMate is an Android mobile application designed to assist users in planning t
   - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
 - **Meal Details**: Provides detailed information about each meal, including name, image, origin country, ingredients, preparation steps, and an embedded video.
 - **Splash Screen**: Displays a splash screen with animation using Lottie.
-- **Bonus**: Allows users to add meals to the mobile calendar as calendar items (not Google Calendar).
-- **Note**: Use of RxJava in the app is mandatory.
 
 ## Installation
 To install MealMate on your device:
