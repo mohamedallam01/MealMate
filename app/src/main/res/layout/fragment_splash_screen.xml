@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="@string/meal_mate"
+
         android:textColor="@color/medium_electric_blue"
         android:textSize="34sp"
         android:textStyle="bold"
