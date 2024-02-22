@@ -5,14 +5,18 @@ MealMate is an Android mobile application designed to assist users in planning t
 
 ## Project Features
 - **Splash Screen**: Displays a splash screen with animation using Lottie.
-  ![Splash Screen](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true)
+  ![Splash Screen]
+  <div style="display:flex; justify-content:space-between;">
+    <img src="(https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true)" width="30%">
+</div>
+
 
   - **Authentication**:
   - Simple login and signup options, including social networking authentication (Firebase authentication).
   - Registered users can access their archived data upon successful login without needing to log in again (Local SharedPreferences, Firebase).
   - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
 
-<div style="display:flex; justify-content:center;">
+<div style="display:flex; justify-content:space-between;">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/register_login.jpg?raw=true" width="30%">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/registeration%20form.jpg?raw=true" width="30%">
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true" width="30%">
