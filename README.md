@@ -36,4 +36,4 @@ To install MealMate on your device:
 Contributions to the Meal Planner project are welcome! If you have any suggestions, feature requests, or bug reports, please open an issue or submit a pull request on the [GitHub repository](https://github.com/mohamedallam01/MealMate.git).
 
 ## License
-This project is licensed under the [ITI](LICENSE). Feel free to use, modify, and distribute the code for your own purposes.
+This project is licensed under the [ITI]([LICENSE](https://iti.gov.eg/). Feel free to use, modify, and distribute the code for your own purposes.
