@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dialog_week_plan.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_a_day_to_add_the_meal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:textColor="@color/medium_electric_blue"
+        android:gravity="center" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButtonSunday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sunday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMonday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/monday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonTuesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tuesday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonWednesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wednesday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonThursday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thursday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFriday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/friday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSaturday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/saturday"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textColor="@color/medium_electric_blue"
+
+            android:buttonTint="@color/medium_electric_blue" />
+
+    </RadioGroup>
+</LinearLayout>

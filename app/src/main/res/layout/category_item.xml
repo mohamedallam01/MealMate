@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/ivCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@drawable/_x3_palestine_flag_image__03054"
+        android:contentDescription="@string/category_image"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/maastricht_blue"
+        android:gravity="center"
+        android:textColor="@color/white"
+        tools:text="dummy text" />
+
+</androidx.cardview.widget.CardView>

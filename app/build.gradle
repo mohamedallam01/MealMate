@@ -1,5 +1,8 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs'
+
 }
 
 android {
@@ -31,7 +34,7 @@ android {
 dependencies {
 
     def room_version = "2.6.1"
-    def nav_version = "2.7.6"
+    def nav_version = "2.7.7"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
@@ -58,4 +61,33 @@ dependencies {
 
     //lottie
     implementation 'com.airbnb.android:lottie:6.3.0'
+
+    //Splash Screen
+    implementation "androidx.core:core-splashscreen:1.1.0-alpha02"
+
+    //bottom nav bar
+    implementation 'com.google.android.material:material:1.11.0'
+
+    //play services
+    implementation'com.google.android.gms:play-services-auth:21.0.0'
+
+    //firebase auth
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
+    implementation 'com.google.firebase:firebase-analytics:21.5.1'
+
+    //firebase database
+    implementation'com.google.firebase:firebase-database:20.3.0'
+
+    //RxJava Retrofit and room
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation 'com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0'
+    implementation 'androidx.room:room-rxjava3:2.6.1'
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //YouTube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28'
 }

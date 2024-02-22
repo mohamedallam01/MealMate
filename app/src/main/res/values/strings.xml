@@ -1,3 +1,66 @@
 <resources>
     <string name="app_name">MealMate</string>
+    <string name="meal_mate">MealMate</string>
+    <string name="smart_meals">Smart Meals Start Here</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="continue_with_google">Continue With Google</string>
+    <string name="as_guest">Continue as Guest?</string>
+    <string name="registration_meal">Registration Meal</string>
+    <string name="google_icon">google icon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_home_fragment">Hello Home fragment</string>
+    <string name="hello_login_fragment">Hello Login fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_favorite_fragment">Hello Favorite fragment</string>
+    <string name="hello_search_fragment">Hello Search fragment</string>
+    <string name="hello_profile_fragment">Hello Profile fragment</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
+    <string name="client_id">348427073932-6hl6bpcnsiv2b09klgjgpbe83p2db4fk.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_name">User Name</string>
+    <string name="hint_user_name">Enter User Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="hint_e_mail">Enter E-mail</string>
+    <string name="password">Password</string>
+    <string name="hint_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign UP</string>
+    <string name="login">Login</string>
+    <string name="registration_login_image">Registration Login Image</string>
+    <string name="login_image">Login Image</string>
+    <string name="checked">checked</string>
+    <string name="not_checked">not checked</string>
+    <string name="daily_inspiration_image">Daily Inspiration Image</string>
+    <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="country">Country</string>
+    <string name="area_image">Area Image</string>
+    <string name="more_details">More Details</string>
+    <string name="detail_meal_image">Detail Meal Image</string>
+    <string name="by_country">By Country</string>
+    <string name="by_ingredients">By Ingredients</string>
+    <string name="country_image">Country Image</string>
+    <string name="ingredients_image">Ingredients Image</string>
+    <string name="category_image">Category Image</string>
+    <string name="by_category">By Category</string>
+    <string name="choose_a_day_to_add_the_meal">Choose a Day to add the Meal:</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">TuesDay</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="add_to_calender">Add to Calender</string>
+    <string name="national_meals">National Meals</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="log_out">Log out</string>
+    <string name="week_plan">Week Plan</string>
+    <string name="remove_meal_from_week_plan">Remove Meal from Week Plan</string>
+    <string name="search_by_country">Search by Country</string>
+    <string name="write_meal_name">Write Meal Name</string>
 </resources>
