@@ -5,9 +5,9 @@ MealMate is an Android mobile application designed to assist users in planning t
 
 ## Project Features
 - **Splash Screen**: Displays a splash screen with animation using Lottie.
-  ![Splash Screen]
+- 
   <div style="display:flex; justify-content:space-between;">
-    <img src="(https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true)" width="30%">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true" width="30%">
 </div>
 
 
@@ -22,34 +22,31 @@ MealMate is an Android mobile application designed to assist users in planning t
     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true" width="30%">
 </div>
 
-- **Meal of the Day**: Users can view a randomly selected meal for inspiration.
-  ![Meal of the Day](url_to_image1)
+- **Meal of the Day**: Users can view a randomly selected meal for inspiration and discover National Meals according to the country they live in
+  <div style="display:flex; justify-content:space-between;">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/home.jpg?raw=true" width="30%">
+</div>
 
 - **Search Functionality**: Users can search for meals based on country, ingredient, or category.
-  ![Search Functionality](url_to_image2)
-
-- **Categories**: Displays a list of available categories for users to choose from.
-  ![Categories](url_to_image3)
-
-- **Country-wise Meals**: Shows popular meals from different countries.
-  ![Country-wise Meals](url_to_image4)
+  <div style="display:flex; justify-content:space-between;">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/search.jpg?raw=true" width="30%">
+</div>
 
 - **Favorite Meals**: Users can add meals to favorites or remove them. (Local storage using Room, Firebase not allowed)
-  ![Favorite Meals](url_to_image5)
-
-- **Data Synchronization**: Users can synchronize and backup their data for access across devices. (Firebase)
-  ![Data Synchronization](url_to_image6)
+  <div style="display:flex; justify-content:space-between;">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/favorite.jpg?raw=true" width="30%">
+</div>
 
 - **Weekly Meal Planning**: Users can view and add meals for the current week.
-  ![Weekly Meal Planning](url_to_image7)
-
-- **Offline Access**: Users can access favorite meals and weekly meal plans even without an internet connection.
-  ![Offline Access](url_to_image8)
-
-
+  <div style="display:flex; justify-content:space-between;">
+     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/days.jpg?raw=true" width="30%">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/week%20plan.jpg?raw=true" width="30%">
+</div>
 
 - **Meal Details**: Provides detailed information about each meal, including name, image, origin country, ingredients, preparation steps, and an embedded video.
-  ![Meal Details](url_to_image10)
+   <div style="display:flex; justify-content:space-between;">
+    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/details.jpg?raw=true" width="30%">
+</div>
 
 
 
