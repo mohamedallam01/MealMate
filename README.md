@@ -39,7 +39,7 @@ MealMate is an Android mobile application designed to assist users in planning t
   ![Meal Details](url_to_image10)
 
 - **Splash Screen**: Displays a splash screen with animation using Lottie.
-  ![Splash Screen](screenshots/splash screen.jpg)
+  ![Splash Screen]([screenshots/splash screen.jpg](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg))
 
 
 ## Installation
