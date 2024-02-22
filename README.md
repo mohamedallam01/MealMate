@@ -4,6 +4,19 @@
 MealMate is an Android mobile application designed to assist users in planning their weekly meals. With features like viewing categories, suggesting meals, searching for specific meals using various criteria, and saving favorite meals for offline browsing,MealMate aims to streamline meal planning and make it more convenient for users. The application utilizes the ((https://themealdb.com/api.php)) to provide a wide range of meal options.
 
 ## Project Features
+- **Splash Screen**: Displays a splash screen with animation using Lottie.
+  ![Splash Screen](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true)
+
+  - **Authentication**:
+  - Simple login and signup options, including social networking authentication (Firebase authentication).
+  - Registered users can access their archived data upon successful login without needing to log in again (Local SharedPreferences, Firebase).
+  - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
+  ![Authentication]
+<div style="display:flex; justify-content:center;">
+    <img src="[url_to_image1](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/register_login.jpg?raw=true)" width="30%">
+    <img src="[url_to_image2](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/registeration%20form.jpg?raw=true)" width="30%">
+    <img src="[url_to_image3](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true)" width="30%">
+</div>
 
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration.
   ![Meal of the Day](url_to_image1)
@@ -29,17 +42,12 @@ MealMate is an Android mobile application designed to assist users in planning t
 - **Offline Access**: Users can access favorite meals and weekly meal plans even without an internet connection.
   ![Offline Access](url_to_image8)
 
-- **Authentication**:
-  - Simple login and signup options, including social networking authentication (Firebase authentication).
-  - Registered users can access their archived data upon successful login without needing to log in again (Local SharedPreferences, Firebase).
-  - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
-  ![Authentication](url_to_image9)
+
 
 - **Meal Details**: Provides detailed information about each meal, including name, image, origin country, ingredients, preparation steps, and an embedded video.
   ![Meal Details](url_to_image10)
 
-- **Splash Screen**: Displays a splash screen with animation using Lottie.
-  ![Splash Screen](https://github.com/mohamedallam01/MealMate/blob/master/screenshots/splash%20screen.jpg?raw=true))
+
 
 
 ## Installation
