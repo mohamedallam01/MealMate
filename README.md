@@ -1,7 +1,7 @@
-# Meal Planner
+# MealMate
 
 ## Brief Description
-Meal Planner is an Android mobile application designed to assist users in planning their weekly meals. With features like viewing categories, suggesting meals, searching for specific meals using various criteria, and saving favorite meals for offline browsing, Meal Planner aims to streamline meal planning and make it more convenient for users. The application utilizes the [MealDB API](https://themealdb.com/api.php) to provide a wide range of meal options.
+MealMate is an Android mobile application designed to assist users in planning their weekly meals. With features like viewing categories, suggesting meals, searching for specific meals using various criteria, and saving favorite meals for offline browsing,MealMate aims to streamline meal planning and make it more convenient for users. The application utilizes the [MealDB API]([https://themealdb.com/api.php](https://themealdb.com/api.php)) to provide a wide range of meal options.
 
 ## Project Features
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration.
@@ -22,9 +22,9 @@ Meal Planner is an Android mobile application designed to assist users in planni
 - **Note**: Use of RxJava in the app is mandatory.
 
 ## Installation
-To install Meal Planner on your device:
+To install MealMate on your device:
 
-1. Download the app file from the [releases]((https://github.com/mohamedallam01/MealMate.git)) section.
+1. Download the app file from the ((https://github.com/mohamedallam01/MealMate.git)).
 
 
 ## Usage
