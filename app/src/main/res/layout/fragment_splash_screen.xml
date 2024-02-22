@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="@string/meal_mate"
-        android:textColor="?attr/colorPrimary"
+
+        android:textColor="@color/medium_electric_blue"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvSlogan"
@@ -46,7 +47,7 @@
         android:layout_marginBottom="256dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/smart_meals"
-        android:textColor="?attr/colorPrimary"
+        android:textColor="@color/medium_electric_blue"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
