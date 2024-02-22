@@ -1,7 +1,7 @@
 # MealMate
 
 ## Brief Description
-MealMate is an Android mobile application designed to assist users in planning their weekly meals. With features like viewing categories, suggesting meals, searching for specific meals using various criteria, and saving favorite meals for offline browsing,MealMate aims to streamline meal planning and make it more convenient for users. The application utilizes the [MealDB API]((https://themealdb.com/api.php)) to provide a wide range of meal options.
+MealMate is an Android mobile application designed to assist users in planning their weekly meals. With features like viewing categories, suggesting meals, searching for specific meals using various criteria, and saving favorite meals for offline browsing,MealMate aims to streamline meal planning and make it more convenient for users. The application utilizes the ((https://themealdb.com/api.php)) to provide a wide range of meal options.
 
 ## Project Features
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration.
