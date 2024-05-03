@@ -16,35 +16,35 @@ MealMate is an Android mobile application designed to assist users in planning t
   - Guest mode allows users to access basic features like viewing categories, searching, and viewing the meal of the day.
 
 <div style="display:flex; justify-content:space-between;">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/register_login.jpg?raw=true" width="30%">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/registeration%20form.jpg?raw=true" width="30%">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/login.jpg?raw=true" width="30%">
+    <img src="https://i.imgur.com/PryQIaD.jpeg" width="30%">
+    <img src="https://i.imgur.com/hkccaNv.jpeg" width="30%">
+    <img src="https://i.imgur.com/TUFSBD0.jpeg" width="30%">
 </div>
 
 - **Meal of the Day**: Users can view a randomly selected meal for inspiration and discover National Meals according to the country they live in
   <div style="display:flex; justify-content:center">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/home.jpg?raw=true" width="30%">
+    <img src="https://i.imgur.com/VlZ1EsN.jpeg" width="30%">
 </div>
 
 - **Search Functionality**: Users can search for meals based on country, ingredient, or category.
   <div style="display:flex; justify-content:center">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/search.jpg?raw=true" width="30%">
+    <img src="https://i.imgur.com/kkHNE8N.jpeg" width="30%">
 </div>
 
 - **Favorite Meals**: Users can add meals to favorites or remove them. (Local storage using Room, Firebase not allowed)
   <div style="display:flex; justify-content:center">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/favorite.jpg?raw=true" width="30%">
+    <img src="https://i.imgur.com/dqPgYJe.jpeg" width="30%">
 </div>
 
 - **Weekly Meal Planning**: Users can view and add meals for the current week.
   <div style="display:flex; justify-content:center">
-     <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/days.jpg?raw=true" width="30%">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/week%20plan.jpg?raw=true" width="30%">
+     <img src="https://i.imgur.com/ZHEbkXS.jpeg" width="30%">
+    <img src="https://i.imgur.com/98IgoOZ.jpeg" width="30%">
 </div>
 
 - **Meal Details**: Provides detailed information about each meal, including name, image, origin country, ingredients, preparation steps, and an embedded video.
    <div style="display:flex; justify-content:space-between;">
-    <img src="https://github.com/mohamedallam01/MealMate/blob/master/screenshots/details.jpg?raw=true" width="30%">
+    <img src="https://i.imgur.com/WcLTQxt.jpeg" width="30%">
 </div>
 
 
